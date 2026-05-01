@@ -214,7 +214,8 @@ function renderProjectTemplate() {
     </section>`;
 }
 
-let idiomaAtual = localStorage.getItem("idioma") || "pt";
+const idiomasDisponiveis = ["pt", "en"];
+let idiomaAtual = idiomasDisponiveis.includes(localStorage.getItem("idioma")) ? localStorage.getItem("idioma") : "pt";
 
 function aplicarTemaSalvo() { const temaSalvo = localStorage.getItem("tema"); document.body.classList.toggle("dark", temaSalvo === "dark"); atualizarTextoBotaoTema(); }
 function alternarTema() { const agoraDark = document.body.classList.toggle("dark"); localStorage.setItem("tema", agoraDark ? "dark" : "light"); atualizarTextoBotaoTema(); }
@@ -296,6 +297,7 @@ function projetoDescricaoPorIdioma(t) {
 }
 
 function setIdioma(idioma) {
+  if (!idiomasDisponiveis.includes(idioma)) return;
   idiomaAtual = idioma;
   localStorage.setItem("idioma", idiomaAtual);
   const t = idiomas[idiomaAtual];
@@ -321,8 +323,16 @@ function setIdioma(idioma) {
   document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === idiomaAtual));
   atualizarTextoBotaoTema();
   renderizarProjetos();
+
+  if (document.body.dataset.projectId) {
+    renderProjectTemplate();
+    configurarBotaoTema();
+    configurarIdioma();
+  }
+
   renderizarPaginaProjeto();
   aplicarIdiomaProjeto();
+  document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === idiomaAtual));
 }
 
 function renderizarProjetos() {
