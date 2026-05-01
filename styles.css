@@ -82,6 +82,11 @@ footer { text-align: center; color: var(--footer); font-weight: 700; padding-bot
 .kafka-side-card { margin-top: auto; border: 1px solid var(--border); border-radius: 14px; padding: 1rem; background: var(--surface-strong); }
 .kafka-side-card h3 { margin: 0 0 .55rem; }
 .kafka-side-card p { margin: 0; color: var(--muted); line-height: 1.55; }
+.kafka-side-logo { margin-top: .2rem; border: 1px solid var(--border); border-radius: 12px; padding: .75rem; background: color-mix(in srgb, var(--panel) 85%, transparent); }
+.kafka-logo { width: 100%; height: auto; display: block; }
+.kafka-logo-light { display: none; }
+body.dark .kafka-logo-dark { display: none; }
+body.dark .kafka-logo-light { display: block; }
 .kafka-content { padding: 1.4rem; }
 .kafka-content .project-page-header p { color: var(--muted); }
 .kafka-highlight { margin: 1rem 0; border: 1px solid var(--border); border-radius: 14px; background: var(--surface-strong); padding: 1rem; }
