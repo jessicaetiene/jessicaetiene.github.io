@@ -200,7 +200,11 @@ function renderProjectTemplate() {
           <button class="lang-btn" data-lang="pt" type="button" aria-label="Português"><img src="https://flagcdn.com/w20/br.png" alt="" aria-hidden="true"></button>
           <button class="lang-btn" data-lang="en" type="button" aria-label="English"><img src="https://flagcdn.com/w20/us.png" alt="" aria-hidden="true"></button>
           <button id="themeToggle" class="theme-toggle theme-toggle-switch" type="button" aria-label="Alternar tema" aria-pressed="false">
-            <span class="toggle-track" aria-hidden="true"><span class="toggle-icon toggle-icon-sun">☀️</span><span class="toggle-thumb"></span><span class="toggle-icon toggle-icon-moon">🌙</span></span>
+            <span class="toggle-track" aria-hidden="true">
+              <span class="toggle-option toggle-option-light"><span class="toggle-icon toggle-icon-sun">☀️</span><span class="toggle-label toggle-label-light">Light</span></span>
+              <span class="toggle-thumb"></span>
+              <span class="toggle-option toggle-option-dark"><span class="toggle-label toggle-label-dark">Dark</span><span class="toggle-icon toggle-icon-moon">🌙</span></span>
+            </span>
           </button>
         </div>
       </div>
@@ -219,7 +223,7 @@ let idiomaAtual = idiomasDisponiveis.includes(localStorage.getItem("idioma")) ? 
 
 function aplicarTemaSalvo() { const temaSalvo = localStorage.getItem("tema"); document.body.classList.toggle("dark", temaSalvo === "dark"); atualizarTextoBotaoTema(); }
 function alternarTema() { const agoraDark = document.body.classList.toggle("dark"); localStorage.setItem("tema", agoraDark ? "dark" : "light"); atualizarTextoBotaoTema(); }
-function atualizarTextoBotaoTema() { const b = document.getElementById("themeToggle"); if (!b) return; const t = idiomas[idiomaAtual]; if (b.classList.contains("theme-toggle-switch")) { b.setAttribute("aria-label", document.body.classList.contains("dark") ? t.themeLight : t.themeDark); b.setAttribute("aria-pressed", String(document.body.classList.contains("dark"))); return; } b.textContent = document.body.classList.contains("dark") ? t.themeLight : t.themeDark; }
+function atualizarTextoBotaoTema() { const b = document.getElementById("themeToggle"); if (!b) return; const t = idiomas[idiomaAtual]; if (b.classList.contains("theme-toggle-switch")) { b.setAttribute("aria-label", document.body.classList.contains("dark") ? t.themeLight : t.themeDark); b.setAttribute("aria-pressed", String(document.body.classList.contains("dark"))); const lightLabel = b.querySelector(".toggle-label-light"); const darkLabel = b.querySelector(".toggle-label-dark"); if (lightLabel) lightLabel.textContent = t.themeLight.replace("☀️ ", ""); if (darkLabel) darkLabel.textContent = t.themeDark.replace("🌙 ", ""); return; } b.textContent = document.body.classList.contains("dark") ? t.themeLight : t.themeDark; }
 function configurarBotaoTema() { const b = document.getElementById("themeToggle"); if (b) b.addEventListener("click", alternarTema); }
 
 
