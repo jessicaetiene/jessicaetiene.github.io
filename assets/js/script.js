@@ -157,13 +157,30 @@ const projectTemplates = {
   }
 };
 
+const projectTranslations = {
+  "kafka-lab": {
+    navIds: ["kafka-nav-home", "kafka-nav-topics", "kafka-nav-partitions", "kafka-nav-producers", "kafka-nav-consumers", "kafka-nav-schema", "kafka-nav-docker"],
+    navLabels: (t) => [t.kafkaNav.home, t.kafkaNav.topics, t.kafkaNav.partitions, t.kafkaNav.producers, t.kafkaNav.consumers, t.kafkaNav.schema, t.kafkaNav.docker],
+    sideTitle: { pt: "Kafka Lab", en: "Kafka Lab" },
+    sideDescription: (t) => t.kafkaStudyText
+  },
+  "catalog-pricing-service": {
+    navIds: ["catalog-nav-home", "catalog-nav-goal", "catalog-nav-rules", "catalog-nav-tests", "catalog-nav-deploy"],
+    navLabels: (t) => [t.kafkaNav.home, idiomaAtual === "pt" ? "Objetivo" : "Goal", idiomaAtual === "pt" ? "Regras de preço" : "Pricing rules", idiomaAtual === "pt" ? "Testes" : "Tests", idiomaAtual === "pt" ? "Deploy" : "Deploy"],
+    sideTitle: { pt: "Catalog Pricing Service", en: "Catalog Pricing Service" },
+    sideDescription: (t) => descricoesProjetos["catalog-pricing-service"]?.[idiomaAtual]?.description || (idiomaAtual === "pt" ? "Mini API em Kotlin para simular cálculo de preços de catálogo." : "Kotlin mini API to simulate catalog pricing calculations.")
+  }
+};
+
 function renderProjectTemplate() {
   const projectId = document.body.dataset.projectId;
   const root = document.getElementById('projectRoot');
   if (!projectId || !root) return;
   const cfg = projectTemplates[projectId] || projectTemplates.default;
+  const navIds = projectTranslations[projectId]?.navIds || [];
   const navItems = cfg.nav.map((item, idx) => {
-    const tag = idx === 0 ? 'a href="../index.html" class="project-nav-item active"' : 'div class="project-nav-item"';
+    const idAttr = navIds[idx] ? ` id="${navIds[idx]}"` : "";
+    const tag = idx === 0 ? `a href="../index.html" class="project-nav-item active"${idAttr}` : `div class="project-nav-item"${idAttr}`;
     return `<${tag}>${item}</${idx===0?'a':'div'}>`;
   }).join('');
   const sideImage = cfg.sideImage ? `<img src="${cfg.sideImage}" alt="Logo do projeto" class="project-side-image" />` : '';
@@ -171,7 +188,7 @@ function renderProjectTemplate() {
     <aside class="project-sidebar">
       ${navItems}
       <section class="project-side-card">
-        <h3>${cfg.sideTitle}</h3>
+        <h3 id="project-side-title">${cfg.sideTitle}</h3>
         <p id="project-side-description">${cfg.sideDescription}</p>
         ${sideImage}
       </section>
@@ -214,6 +231,20 @@ function aplicarIdiomaProjeto() {
   if (repoLabel) repoLabel.textContent = t.repoLabel;
   const sideDescription = document.getElementById("project-side-description");
   if (sideDescription) sideDescription.textContent = descricoesProjetos[projectId]?.[idiomaAtual]?.sideDescription || projetoDescricaoPorIdioma(t);
+  const sideTitle = document.getElementById("project-side-title");
+  if (sideTitle) {
+    const translated = projectTranslations[projectId]?.sideTitle?.[idiomaAtual];
+    if (translated) sideTitle.textContent = translated;
+  }
+  const navLabels = projectTranslations[projectId]?.navLabels?.(t);
+  const navIds = projectTranslations[projectId]?.navIds || [];
+  navIds.forEach((id, index) => {
+    const el = document.getElementById(id);
+    if (el && navLabels?.[index]) {
+      const prefix = index === 0 ? "🏠 " : "";
+      el.textContent = `${prefix}${navLabels[index]}`;
+    }
+  });
   if (projectId !== "kafka-lab") return;
   const studyTitle = document.getElementById("kafka-lab-topicos");
   if (studyTitle) studyTitle.textContent = t.kafkaStudyTitle;
@@ -260,7 +291,8 @@ function aplicarIdiomaProjeto() {
 
 function projetoDescricaoPorIdioma(t) {
   const projectId = document.body.dataset.projectId;
-  return descricoesProjetos[projectId]?.[idiomaAtual]?.sideDescription || t.kafkaStudyText;
+  if (projectId === "kafka-lab") return descricoesProjetos[projectId]?.[idiomaAtual]?.sideDescription || t.kafkaStudyText;
+  return projectTranslations[projectId]?.sideDescription?.(t) || "";
 }
 
 function setIdioma(idioma) {
