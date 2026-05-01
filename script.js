@@ -1,12 +1,62 @@
+const idiomas = {
+  pt: {
+    lang: "pt-BR",
+    title: "Portfólio | Jessica Etiene",
+    role: "Web Developer",
+    contato: "Contato",
+    tecnologias: "Tecnologias",
+    navSobre: "Sobre",
+    navPortfolio: "Portfólio",
+    themeLight: "☀️ Claro",
+    themeDark: "🌙 Escuro",
+    aboutTitle: "Sobre mim",
+    quemSouLabel: "Quem sou",
+    ondeTrabalhoLabel: "Onde trabalho",
+    projetosTitle: "Projetos",
+    projetosHint: "Clique em um projeto para abrir sua própria página HTML com detalhes.",
+    openProject: "Abrir página do projeto",
+    bio: "Desenvolvedora focada em criar experiências web modernas, funcionais e acessíveis.",
+    sobre: "Crio interfaces com foco em clareza, estética e facilidade de uso para transformar ideias em produtos digitais memoráveis.",
+    quemSou: "Sou uma desenvolvedora front-end apaixonada por interfaces limpas, performance e boas práticas de código.",
+    ondeTrabalho: "Atualmente trabalho na Empresa X como Desenvolvedora Front-end.",
+  },
+  en: {
+    lang: "en-US",
+    title: "Portfolio | Jessica Etiene",
+    role: "Web Developer",
+    contato: "Contact",
+    tecnologias: "Technologies",
+    navSobre: "About",
+    navPortfolio: "Portfolio",
+    themeLight: "☀️ Light",
+    themeDark: "🌙 Dark",
+    aboutTitle: "About me",
+    quemSouLabel: "Who I am",
+    ondeTrabalhoLabel: "Where I work",
+    projetosTitle: "Projects",
+    projetosHint: "Click a project to open its own HTML page with details.",
+    openProject: "Open project page",
+    bio: "Developer focused on building modern, functional, and accessible web experiences.",
+    sobre: "I build interfaces focused on clarity, aesthetics, and ease of use to transform ideas into memorable digital products.",
+    quemSou: "I'm a front-end developer passionate about clean interfaces, performance, and code best practices.",
+    ondeTrabalho: "I currently work at Company X as a Front-end Developer.",
+  }
+};
+
 const dadosSite = {
   nome: "Jessica Etiene",
   assinatura: "Jessica Etiene",
-  bio: "Desenvolvedora focada em criar experiências web modernas, funcionais e acessíveis.",
-  sobre: "Crio interfaces com foco em clareza, estética e facilidade de uso para transformar ideias em produtos digitais memoráveis.",
-  quemSou: "Sou uma desenvolvedora front-end apaixonada por interfaces limpas, performance e boas práticas de código.",
-  ondeTrabalho: "Atualmente trabalho na Empresa X como Desenvolvedora Front-end.",
-  fotoPerfil: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
-  tecnologias: ["HTML5", "CSS3", "JavaScript", "React", "Node.js", "Git", "Figma"],
+  fotoPerfil: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=760&q=80",
+  tecnologias: [
+    "https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white",
+    "https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white",
+    "https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white",
+    "https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white",
+    "https://img.shields.io/badge/Kafka-231F20?style=for-the-badge&logo=apachekafka&logoColor=white",
+    "https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white",
+    "https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white",
+    "https://img.shields.io/badge/Clojure-5881D8?style=for-the-badge&logo=clojure&logoColor=white"
+  ],
   projetos: [
     { id: "projeto-1", nome: "Projeto 1", descricao: "Landing page responsiva com HTML, CSS e JavaScript.", link: "https://github.com/jessicaetiene/projeto-1" },
     { id: "projeto-2", nome: "Projeto 2", descricao: "Aplicação web com integração de API externa.", link: "https://github.com/jessicaetiene/projeto-2" },
@@ -16,87 +66,94 @@ const dadosSite = {
     { id: "projeto-6", nome: "Projeto 6", descricao: "Aplicativo de tarefas com filtros e persistência local.", link: "https://github.com/jessicaetiene/projeto-6" }
   ],
   contatos: [
-    { label: "GitHub", valor: "github.com/jessicaetiene" },
-    { label: "LinkedIn", valor: "linkedin.com/in/jessicaetiene" },
-    { label: "Email", valor: "jessica@email.com" }
+    { icon: "🐙", label: "GitHub", valor: "github.com/jessicaetiene", href: "https://github.com/jessicaetiene" },
+    { icon: "✉️", label: "Gmail", valor: "jessica@gmail.com", href: "mailto:jessica@gmail.com" },
+    { icon: "💼", label: "LinkedIn", valor: "linkedin.com/in/jessicaetiene", href: "https://linkedin.com/in/jessicaetiene" }
   ]
 };
 
-function aplicarTemaSalvo() {
-  const temaSalvo = localStorage.getItem("tema");
-  const usarDark = temaSalvo ? temaSalvo === "dark" : false;
-  document.body.classList.toggle("dark", usarDark);
+let idiomaAtual = localStorage.getItem("idioma") || "pt";
+
+function aplicarTemaSalvo() { const temaSalvo = localStorage.getItem("tema"); document.body.classList.toggle("dark", temaSalvo === "dark"); atualizarTextoBotaoTema(); }
+function alternarTema() { const agoraDark = document.body.classList.toggle("dark"); localStorage.setItem("tema", agoraDark ? "dark" : "light"); atualizarTextoBotaoTema(); }
+function atualizarTextoBotaoTema() { const b = document.getElementById("themeToggle"); if (!b) return; const t = idiomas[idiomaAtual]; b.textContent = document.body.classList.contains("dark") ? t.themeLight : t.themeDark; }
+function configurarBotaoTema() { const b = document.getElementById("themeToggle"); if (b) b.addEventListener("click", alternarTema); }
+
+function setIdioma(idioma) {
+  idiomaAtual = idioma;
+  localStorage.setItem("idioma", idiomaAtual);
+  const t = idiomas[idiomaAtual];
+  document.documentElement.lang = t.lang;
+  document.title = t.title;
+  document.querySelector(".role").textContent = t.role;
+  document.querySelector("#sobre h2").textContent = t.aboutTitle;
+  document.querySelector("#projetos h2").textContent = t.projetosTitle;
+  document.getElementById("projetosHint").textContent = t.projetosHint;
+  document.getElementById("contatoTitulo").textContent = t.contato;
+  document.getElementById("tecnologiasTitulo").textContent = t.tecnologias;
+  document.getElementById("navSobre").textContent = t.navSobre;
+  document.getElementById("navPortfolio").textContent = t.navPortfolio;
+  document.getElementById("quemSouLabel").textContent = `${t.quemSouLabel}:`;
+  document.getElementById("ondeTrabalhoLabel").textContent = `${t.ondeTrabalhoLabel}:`;
+  document.getElementById("bio").textContent = t.bio;
+  document.getElementById("sobreTexto").textContent = t.sobre;
+  document.getElementById("quemSou").textContent = t.quemSou;
+  document.getElementById("ondeTrabalho").textContent = t.ondeTrabalho;
+
+  document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === idiomaAtual));
   atualizarTextoBotaoTema();
+  renderizarProjetos();
 }
 
-function alternarTema() {
-  const agoraDark = document.body.classList.toggle("dark");
-  localStorage.setItem("tema", agoraDark ? "dark" : "light");
-  atualizarTextoBotaoTema();
-}
-
-function atualizarTextoBotaoTema() {
-  const botao = document.getElementById("themeToggle");
-  if (!botao) return;
-  botao.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
-}
-
-function configurarBotaoTema() {
-  const botao = document.getElementById("themeToggle");
-  if (botao) botao.addEventListener("click", alternarTema);
+function renderizarProjetos() {
+  const t = idiomas[idiomaAtual];
+  const listaProjetos = document.getElementById("listaProjetos");
+  listaProjetos.innerHTML = "";
+  dadosSite.projetos.forEach((projeto) => {
+    const card = document.createElement("a");
+    card.className = "project";
+    card.href = `${projeto.id}.html`;
+    card.innerHTML = `<h3>${projeto.nome}</h3><p>${projeto.descricao}</p><small>${t.openProject}</small>`;
+    listaProjetos.appendChild(card);
+  });
 }
 
 function renderizarIndex() {
   document.getElementById("nome").textContent = dadosSite.nome;
   document.getElementById("assinatura").textContent = dadosSite.assinatura;
-  document.getElementById("bio").textContent = dadosSite.bio;
-  document.getElementById("sobreTexto").textContent = dadosSite.sobre;
-  document.getElementById("quemSou").textContent = dadosSite.quemSou;
-  document.getElementById("ondeTrabalho").textContent = dadosSite.ondeTrabalho;
   document.getElementById("fotoPerfil").src = dadosSite.fotoPerfil;
   document.getElementById("ano").textContent = new Date().getFullYear();
 
   const badges = document.getElementById("badgesTecnologias");
-  dadosSite.tecnologias.forEach((tecnologia) => {
-    const badge = document.createElement("span");
-    badge.className = "badge";
-    badge.textContent = tecnologia;
-    badges.appendChild(badge);
-  });
-
-  const listaProjetos = document.getElementById("listaProjetos");
-  dadosSite.projetos.forEach((projeto) => {
-    const card = document.createElement("a");
-    card.className = "project";
-    card.href = `${projeto.id}.html`;
-    card.innerHTML = `<h3>${projeto.nome}</h3><p>${projeto.descricao}</p><small>Abrir página do projeto</small>`;
-    listaProjetos.appendChild(card);
+  dadosSite.tecnologias.forEach((src) => {
+    const img = document.createElement("img");
+    img.className = "tech-badge";
+    img.src = src;
+    img.alt = "Tecnologia";
+    badges.appendChild(img);
   });
 
   const contatos = document.getElementById("contatos");
   dadosSite.contatos.forEach((contato) => {
     const item = document.createElement("li");
-    item.textContent = `${contato.label}: ${contato.valor}`;
+    item.innerHTML = `<a href="${contato.href}" target="_blank" rel="noopener noreferrer"><span>${contato.icon}</span> ${contato.label}</a>`;
     contatos.appendChild(item);
   });
+
+  setIdioma(idiomaAtual);
 }
 
-function renderizarPaginaProjeto() {
-  const id = document.body.dataset.projectId;
-  if (!id) return;
-  const projeto = dadosSite.projetos.find((item) => item.id === id);
-  if (!projeto) return;
-
-  document.getElementById("tituloProjeto").textContent = projeto.nome;
-  document.getElementById("descricaoProjeto").textContent = projeto.descricao;
-  document.getElementById("linkProjeto").href = projeto.link;
+function configurarIdioma() {
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.addEventListener("click", () => setIdioma(btn.dataset.lang));
+  });
 }
 
 function iniciar() {
   aplicarTemaSalvo();
   configurarBotaoTema();
+  configurarIdioma();
   if (document.getElementById("listaProjetos")) renderizarIndex();
-  if (document.getElementById("tituloProjeto")) renderizarPaginaProjeto();
 }
 
 iniciar();
