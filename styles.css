@@ -36,6 +36,8 @@ body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--text);
 .header-right { display: flex; gap: .45rem; margin-right: auto; }
 .lang-btn { border: 1px solid var(--border); background: var(--chip-bg); border-radius: 8px; padding: .2rem .45rem; cursor: pointer; opacity: .7; }
 .lang-btn.active { opacity: 1; border-color: var(--accent); }
+.lang-btn img { display: block; width: 20px; height: 14px; border-radius: 2px; }
+
 nav { display: flex; gap: .5rem; margin-left: 1rem; }
 .nav-link { color: var(--muted); text-decoration: none; padding: .45rem .8rem; border-radius: 10px; }
 .nav-link.active, .nav-link:hover { background: var(--chip-bg); color: var(--accent); }
