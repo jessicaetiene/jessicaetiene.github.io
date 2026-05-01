@@ -59,7 +59,7 @@ const dadosSite = {
   ],
   projetos: [
     { id: "catalog-pricing-service", nome: "Catalog Pricing Service", descricao: "Mini projeto de API em Kotlin", link: "https://github.com/jessicaetiene/catalog-pricing-service" },
-    { id: "kafka-lab", nome: "Kafka Lab", descricao: "Laboratório para aprender e praticar conceitos do Apache Kafka.", link: "https://github.com/jessicaetiene/projects/kafka-lab" },
+    { id: "kafka-lab", nome: "Kafka Lab", descricao: "Laboratório para aprender e praticar conceitos do Apache Kafka.", link: "https://github.com/jessicaetiene/kafka-lab" },
     { id: "projeto-3", nome: "Projeto 3", descricao: "Dashboard de métricas com visualizações interativas.", link: "https://github.com/jessicaetiene/projeto-3" },
     { id: "projeto-4", nome: "Projeto 4", descricao: "Sistema de autenticação com fluxo de recuperação de senha.", link: "https://github.com/jessicaetiene/projeto-4" },
     { id: "projeto-5", nome: "Projeto 5", descricao: "E-commerce com carrinho e simulação de pagamento.", link: "https://github.com/jessicaetiene/projeto-5" },
@@ -149,11 +149,31 @@ function configurarIdioma() {
   });
 }
 
+
+function renderizarPaginaProjeto() {
+  const projectId = document.body.dataset.projectId;
+  if (!projectId) return;
+
+  const projeto = dadosSite.projetos.find((item) => item.id === projectId);
+  if (!projeto) return;
+
+  const titulo = document.getElementById("tituloProjeto");
+  const descricao = document.getElementById("descricaoProjeto");
+  const link = document.getElementById("linkProjeto");
+
+  if (titulo) titulo.textContent = projeto.nome;
+  if (descricao) descricao.textContent = projeto.descricao;
+  if (link) link.href = projeto.link;
+}
+
 function iniciar() {
   aplicarTemaSalvo();
   configurarBotaoTema();
-  configurarIdioma();
-  if (document.getElementById("listaProjetos")) renderizarIndex();
+  if (document.getElementById("listaProjetos")) {
+    configurarIdioma();
+    renderizarIndex();
+  }
+  renderizarPaginaProjeto();
 }
 
 iniciar();
