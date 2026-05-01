@@ -8,6 +8,9 @@
   </head>
   <body>
     <header class="hero">
+      <div class="top-actions">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Alternar tema">🌙 Dark</button>
+      </div>
       <h1 id="nome"></h1>
       <p id="bio"></p>
       <a class="btn" href="#projetos">Ver projetos</a>
@@ -30,14 +33,8 @@
 
       <section id="projetos" class="card">
         <h2>Projetos</h2>
-        <p>Clique em um projeto para abrir a tela com detalhes.</p>
+        <p>Clique em um projeto para abrir uma página com detalhes.</p>
         <div id="listaProjetos" class="grid"></div>
-      </section>
-
-      <section id="detalheProjeto" class="card hidden" aria-live="polite">
-        <h2 id="tituloDetalheProjeto"></h2>
-        <p id="descricaoDetalheProjeto"></p>
-        <a id="linkDetalheProjeto" href="#" target="_blank" rel="noopener noreferrer">Abrir repositório no GitHub</a>
       </section>
 
       <section id="contato" class="card">
