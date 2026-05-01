@@ -56,23 +56,36 @@
     });
   };
 
-  const renderProjects = (lang) => {
+  const loadProjectDescription = async (projectId, lang, fallback = "") => {
+    try {
+      const response = await fetch(`./assets/data/descriptions/${projectId}/${lang}.json`);
+      if (!response.ok) throw new Error(`Failed to load description for ${projectId} (${lang})`);
+      const descriptionData = await response.json();
+      return descriptionData.description || fallback;
+    } catch (error) {
+      console.warn(error);
+      return fallback;
+    }
+  };
+
+  const renderProjects = async (lang) => {
     const list = document.getElementById('listaProjetos');
     if (!list) return;
     list.innerHTML = '';
-    Object.entries(data.projects).forEach(([id, project]) => {
+    for (const [id, project] of Object.entries(data.projects)) {
       const card = document.createElement('a');
       card.className = 'project';
       card.href = `./projects/${id}.html`;
       const title = document.createElement('h3');
       title.textContent = project.name[lang];
       const desc = document.createElement('p');
-      desc.textContent = project.description[lang];
+      const fallbackDescription = project.description?.[lang] || project.description?.pt || "";
+      desc.textContent = await loadProjectDescription(id, lang, fallbackDescription);
       const cta = document.createElement('small');
       cta.textContent = lang === 'pt' ? 'Ver detalhes →' : 'View details →';
       card.append(title, desc, cta);
       list.appendChild(card);
-    });
+    }
   };
 
   const applyTheme = (theme, t) => {
@@ -82,7 +95,7 @@
     if (toggle) toggle.textContent = darkMode ? t.themeLight : t.themeDark;
   };
 
-  const applyLanguage = (lang) => {
+  const applyLanguage = async (lang) => {
     const selectedLang = data.languages[lang] ? lang : 'pt';
     const t = data.languages[selectedLang];
     localStorage.setItem('idioma', selectedLang);
@@ -113,7 +126,7 @@
     });
 
     applyTheme(getStoredTheme(), t);
-    renderProjects(selectedLang);
+    await renderProjects(selectedLang);
   };
 
   const bindEvents = () => {

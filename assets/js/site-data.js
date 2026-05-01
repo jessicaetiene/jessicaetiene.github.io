@@ -76,11 +76,7 @@ window.PORTFOLIO_DATA = {
     },
     'catalog-pricing-service': {
       repo: 'https://github.com/jessicaetiene/catalog-pricing-service',
-      name: { pt: 'Catalog Pricing Service', en: 'Catalog Pricing Service' },
-      description: {
-        pt: 'Mini projeto de API em Kotlin.',
-        en: 'Kotlin mini API project.'
-      }
+      name: { pt: 'Catalog Pricing Service', en: 'Catalog Pricing Service' }
     },
     'projeto-3': { repo: 'https://github.com/jessicaetiene/projeto-3', name: { pt: 'Projeto 3', en: 'Project 3' }, description: { pt: 'Dashboard de métricas.', en: 'Metrics dashboard.' } },
     'projeto-4': { repo: 'https://github.com/jessicaetiene/projeto-4', name: { pt: 'Projeto 4', en: 'Project 4' }, description: { pt: 'Sistema de autenticação.', en: 'Authentication system.' } },
