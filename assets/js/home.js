@@ -98,6 +98,10 @@
     setText('tecnologiasTitulo', t.technologies);
     setText('bio', data.profile.bio[selectedLang]);
     setText('projetosHint', t.projectsHint);
+    setText('quemSouLabel', t.whoLabel);
+    setText('ondeTrabalhoLabel', t.whereLabel);
+    setText('quemSou', data.profile.who[selectedLang]);
+    setText('ondeTrabalho', data.profile.where[selectedLang]);
 
     const aboutTitle = document.querySelector('#sobre h2');
     if (aboutTitle) aboutTitle.textContent = t.aboutTitle;
