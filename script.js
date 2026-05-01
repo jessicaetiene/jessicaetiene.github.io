@@ -1,7 +1,7 @@
 const idiomas = {
   pt: {
     lang: "pt-BR",
-    title: "Portfólio | Jessica Etiene",
+    title: "Portfólio | Jéssica Etiene",
     role: "Web Developer",
     contato: "Contato",
     tecnologias: "Tecnologias",
@@ -22,7 +22,7 @@ const idiomas = {
   },
   en: {
     lang: "en-US",
-    title: "Portfolio | Jessica Etiene",
+    title: "Portfolio | Jéssica Etiene",
     role: "Web Developer",
     contato: "Contact",
     tecnologias: "Technologies",
@@ -44,8 +44,8 @@ const idiomas = {
 };
 
 const dadosSite = {
-  nome: "Jessica Etiene",
-  assinatura: "Jessica Etiene",
+  nome: "Jéssica Etiene",
+  assinatura: "Jéssica Etiene",
   fotoPerfil: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=760&q=80",
   tecnologias: [
     "https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white",
