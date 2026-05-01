@@ -110,5 +110,9 @@ body.dark .kafka-logo-light { display: block; }
 .project-nav-item.active { background: var(--chip-bg); color: var(--accent); }
 .project-side-card { margin-top: auto; border: 1px solid var(--border); border-radius: 14px; padding: 1rem; background: var(--surface-strong); }
 .project-side-image { width: 100%; margin-top: .6rem; }
+
+.project-content-header h1 { margin: 0; }
+.side-topics { margin: .5rem 0 0; padding-left: 1rem; color: var(--muted); display: grid; gap: .35rem; }
+.side-topics li { line-height: 1.35; }
 .project-content { padding: 1.4rem; }
 @media (max-width: 900px) { .project-layout { grid-template-columns: 1fr; } .project-sidebar { border-right: none; border-bottom: 1px solid var(--border); } }

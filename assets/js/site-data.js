@@ -58,6 +58,20 @@ window.PORTFOLIO_DATA = {
       description: {
         pt: 'Laboratório para aprender e praticar conceitos do Apache Kafka.',
         en: 'Lab to learn and practice Apache Kafka concepts.'
+      },
+      studyTopics: {
+        pt: [
+          { title: 'Fundamentos Kafka', description: 'Entender brokers, tópicos, partições e replicação.' },
+          { title: 'Produtores e consumidores', description: 'Praticar publicação e leitura de eventos com garantia de entrega.' },
+          { title: 'Consumer Groups', description: 'Explorar balanceamento de carga e paralelismo de consumo.' },
+          { title: 'Observabilidade', description: 'Acompanhar métricas, lag e comportamento do cluster em cenários reais.' }
+        ],
+        en: [
+          { title: 'Kafka fundamentals', description: 'Understand brokers, topics, partitions, and replication.' },
+          { title: 'Producers and consumers', description: 'Practice event publishing and consumption with delivery guarantees.' },
+          { title: 'Consumer groups', description: 'Explore load balancing and consumption parallelism.' },
+          { title: 'Observability', description: 'Track metrics, lag, and cluster behavior in realistic scenarios.' }
+        ]
       }
     },
     'catalog-pricing-service': {
