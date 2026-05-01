@@ -20,7 +20,15 @@ const idiomas = {
     kafkaStudyTitle: "O que estou estudando neste laboratório",
     kafkaStudyText: "Este projeto funciona como um laboratório prático para registrar meus estudos sobre Apache Kafka e consolidar fundamentos de mensageria orientada a eventos.",
     kafkaContentsTitle: "Conteúdos do laboratório",
-    kafkaTopics: ["Criação de tópicos.","Criação e evolução de schemas Avro.","Envio de mensagens para tópicos (producers).","Consumo de mensagens (consumers).","Uso de Docker para subir um cluster Kafka local."],
+    kafkaTopics: [
+      { title: "Criação de tópicos", text: "Aprenda a criar e configurar tópicos no Kafka." },
+      { title: "Criação e evolução de schemas Avro", text: "Entenda como definir e evoluir schemas com Avro." },
+      { title: "Envio de mensagens para tópicos (producers)", text: "Publique mensagens em tópicos do Kafka." },
+      { title: "Consumo de mensagens (consumers)", text: "Consuma mensagens de tópicos de forma eficiente." },
+      { title: "Uso de Docker para subir um cluster Kafka local", text: "Suba um ambiente completo do Kafka com Docker." }
+    ],
+    kafkaNav: { home: "Início", topics: "Tópicos", partitions: "Partições", producers: "Producers", consumers: "Consumers", schema: "Schema Registry", docker: "Kafka com Docker" },
+    kafkaLinks: ["Kafka Topics", "Partições", "Producers", "Consumers", "Avro e Schema Registry", "Kafka com Docker"],
     bio: "Engenheira de software focada em construir sistemas backend escaláveis, resilientes e orientados a dados.",
     sobre: "Desenvolvo soluções com foco em qualidade, performance e boas práticas, transformando requisitos complexos em produtos confiáveis e de alto impacto.",
     quemSou: "Sou uma desenvolvedora backend apaixonada por arquitetura de sistemas, microsserviços e engenharia de dados. Tenho experiência em projetar e implementar soluções em ambientes cloud (especialmente AWS), além de atuar na produção e integração de modelos de machine learning.",
@@ -47,7 +55,15 @@ const idiomas = {
     kafkaStudyTitle: "What I am studying in this lab",
     kafkaStudyText: "This project works as a hands-on lab to track my Apache Kafka studies and consolidate event-driven messaging fundamentals.",
     kafkaContentsTitle: "Lab contents",
-    kafkaTopics: ["Topic creation.","Avro schema creation and evolution.","Sending messages to topics (producers).","Consuming messages (consumers).","Using Docker to run a local Kafka cluster."],
+    kafkaTopics: [
+      { title: "Topic creation", text: "Learn to create and configure Kafka topics." },
+      { title: "Avro schema creation and evolution", text: "Understand how to define and evolve schemas with Avro." },
+      { title: "Sending messages to topics (producers)", text: "Publish messages to Kafka topics." },
+      { title: "Consuming messages", text: "Consume topic messages efficiently." },
+      { title: "Using Docker to run a local Kafka cluster", text: "Start a complete Kafka environment with Docker." }
+    ],
+    kafkaNav: { home: "Home", topics: "Topics", partitions: "Partitions", producers: "Producers", consumers: "Consumers", schema: "Schema Registry", docker: "Kafka with Docker" },
+    kafkaLinks: ["Kafka Topics", "Partitions", "Producers", "Consumers", "Avro and Schema Registry", "Kafka with Docker"],
     bio: "Software engineer focused on building scalable, resilient, and data-driven backend systems.",
     sobre: "I design and develop solutions with a strong emphasis on quality, performance, and best practices, turning complex requirements into reliable, high-impact products.",
     quemSou: "I am a backend developer passionate about system architecture, microservices, and data engineering. I have experience designing and implementing cloud-based solutions (especially on AWS), as well as deploying and integrating machine learning models into production environments.",
@@ -106,15 +122,48 @@ function aplicarIdiomaProjeto() {
   if (studyText) studyText.textContent = t.kafkaStudyText;
   const contentsTitle = document.getElementById("kafka-lab-conteudos");
   if (contentsTitle) contentsTitle.textContent = t.kafkaContentsTitle;
+  const navMap = {
+    "kafka-nav-home": t.kafkaNav.home,
+    "kafka-nav-topics": t.kafkaNav.topics,
+    "kafka-nav-partitions": t.kafkaNav.partitions,
+    "kafka-nav-producers": t.kafkaNav.producers,
+    "kafka-nav-consumers": t.kafkaNav.consumers,
+    "kafka-nav-schema": t.kafkaNav.schema,
+    "kafka-nav-docker": t.kafkaNav.docker
+  };
+  Object.entries(navMap).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  });
+
+  const sideDescription = document.getElementById("kafka-side-description");
+  if (sideDescription) sideDescription.textContent = projetoDescricaoPorIdioma(t);
+
   const topics = document.getElementById("kafkaTopicos");
   if (topics) {
     topics.innerHTML = "";
     t.kafkaTopics.forEach((topic) => {
       const item = document.createElement("li");
-      item.textContent = topic;
+      item.innerHTML = `<h3>${topic.title}</h3><p>${topic.text}</p>`;
       topics.appendChild(item);
     });
   }
+
+  const links = document.getElementById("kafkaLinks");
+  if (links) {
+    const hrefs = ["./topics.md", "./partitions.md", "./producers.md", "./consumers.md", "./avro.md", "./docker.md"];
+    links.innerHTML = "";
+    t.kafkaLinks.forEach((label, index) => {
+      const link = document.createElement("a");
+      link.href = hrefs[index];
+      link.textContent = `→ ${label}`;
+      links.appendChild(link);
+    });
+  }
+}
+
+function projetoDescricaoPorIdioma(t) {
+  return t.kafkaStudyText;
 }
 
 function setIdioma(idioma) {
