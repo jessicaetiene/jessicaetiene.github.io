@@ -15,6 +15,12 @@ const idiomas = {
     projetosTitle: "Projetos",
     projetosHint: "Clique em um projeto para acessar os detalhes",
     openProject: "Abrir página do projeto",
+    back: "← Voltar",
+    repoLabel: "Abrir repositório no GitHub",
+    kafkaStudyTitle: "O que estou estudando neste laboratório",
+    kafkaStudyText: "Este projeto funciona como um laboratório prático para registrar meus estudos sobre Apache Kafka e consolidar fundamentos de mensageria orientada a eventos.",
+    kafkaContentsTitle: "Conteúdos do laboratório",
+    kafkaTopics: ["Criação de tópicos.","Criação e evolução de schemas Avro.","Envio de mensagens para tópicos (producers).","Consumo de mensagens (consumers).","Uso de Docker para subir um cluster Kafka local."],
     bio: "Engenheira de software focada em construir sistemas backend escaláveis, resilientes e orientados a dados.",
     sobre: "Desenvolvo soluções com foco em qualidade, performance e boas práticas, transformando requisitos complexos em produtos confiáveis e de alto impacto.",
     quemSou: "Sou uma desenvolvedora backend apaixonada por arquitetura de sistemas, microsserviços e engenharia de dados. Tenho experiência em projetar e implementar soluções em ambientes cloud (especialmente AWS), além de atuar na produção e integração de modelos de machine learning.",
@@ -36,6 +42,12 @@ const idiomas = {
     projetosTitle: "Projects",
     projetosHint: "Click a project to access its details.",
     openProject: "Open project page",
+    back: "← Back",
+    repoLabel: "Open repository on GitHub",
+    kafkaStudyTitle: "What I am studying in this lab",
+    kafkaStudyText: "This project works as a hands-on lab to track my Apache Kafka studies and consolidate event-driven messaging fundamentals.",
+    kafkaContentsTitle: "Lab contents",
+    kafkaTopics: ["Topic creation.","Avro schema creation and evolution.","Sending messages to topics (producers).","Consuming messages (consumers).","Using Docker to run a local Kafka cluster."],
     bio: "Software engineer focused on building scalable, resilient, and data-driven backend systems.",
     sobre: "I design and develop solutions with a strong emphasis on quality, performance, and best practices, turning complex requirements into reliable, high-impact products.",
     quemSou: "I am a backend developer passionate about system architecture, microservices, and data engineering. I have experience designing and implementing cloud-based solutions (especially on AWS), as well as deploying and integrating machine learning models into production environments.",
@@ -76,8 +88,34 @@ let idiomaAtual = localStorage.getItem("idioma") || "pt";
 
 function aplicarTemaSalvo() { const temaSalvo = localStorage.getItem("tema"); document.body.classList.toggle("dark", temaSalvo === "dark"); atualizarTextoBotaoTema(); }
 function alternarTema() { const agoraDark = document.body.classList.toggle("dark"); localStorage.setItem("tema", agoraDark ? "dark" : "light"); atualizarTextoBotaoTema(); }
-function atualizarTextoBotaoTema() { const b = document.getElementById("themeToggle"); if (!b) return; const t = idiomas[idiomaAtual]; b.textContent = document.body.classList.contains("dark") ? t.themeLight : t.themeDark; }
+function atualizarTextoBotaoTema() { const b = document.getElementById("themeToggle"); if (!b) return; const t = idiomas[idiomaAtual]; if (b.classList.contains("theme-toggle-switch")) { b.setAttribute("aria-label", document.body.classList.contains("dark") ? t.themeLight : t.themeDark); b.setAttribute("aria-pressed", String(document.body.classList.contains("dark"))); return; } b.textContent = document.body.classList.contains("dark") ? t.themeLight : t.themeDark; }
 function configurarBotaoTema() { const b = document.getElementById("themeToggle"); if (b) b.addEventListener("click", alternarTema); }
+
+
+function aplicarIdiomaProjeto() {
+  const projectId = document.body.dataset.projectId;
+  if (projectId !== "kafka-lab") return;
+  const t = idiomas[idiomaAtual];
+  const backBtn = document.querySelector(".top-actions .btn");
+  if (backBtn) backBtn.textContent = t.back;
+  const repoLabel = document.getElementById("repoLabel");
+  if (repoLabel) repoLabel.textContent = t.repoLabel;
+  const studyTitle = document.getElementById("kafka-lab-topicos");
+  if (studyTitle) studyTitle.textContent = t.kafkaStudyTitle;
+  const studyText = document.getElementById("kafka-lab-texto");
+  if (studyText) studyText.textContent = t.kafkaStudyText;
+  const contentsTitle = document.getElementById("kafka-lab-conteudos");
+  if (contentsTitle) contentsTitle.textContent = t.kafkaContentsTitle;
+  const topics = document.getElementById("kafkaTopicos");
+  if (topics) {
+    topics.innerHTML = "";
+    t.kafkaTopics.forEach((topic) => {
+      const item = document.createElement("li");
+      item.textContent = topic;
+      topics.appendChild(item);
+    });
+  }
+}
 
 function setIdioma(idioma) {
   idiomaAtual = idioma;
@@ -85,24 +123,27 @@ function setIdioma(idioma) {
   const t = idiomas[idiomaAtual];
   document.documentElement.lang = t.lang;
   document.title = t.title;
-  document.querySelector(".role").textContent = t.role;
-  document.querySelector("#sobre h2").textContent = t.aboutTitle;
-  document.querySelector("#projetos h2").textContent = t.projetosTitle;
-  document.getElementById("projetosHint").textContent = t.projetosHint;
-  document.getElementById("contatoTitulo").textContent = t.contato;
-  document.getElementById("tecnologiasTitulo").textContent = t.tecnologias;
-  document.getElementById("navSobre").textContent = t.navSobre;
-  document.getElementById("navPortfolio").textContent = t.navPortfolio;
-  document.getElementById("quemSouLabel").textContent = `${t.quemSouLabel}:`;
-  document.getElementById("ondeTrabalhoLabel").textContent = `${t.ondeTrabalhoLabel}:`;
-  document.getElementById("bio").textContent = t.bio;
-  document.getElementById("sobreTexto").textContent = t.sobre;
-  document.getElementById("quemSou").textContent = t.quemSou;
-  document.getElementById("ondeTrabalho").textContent = t.ondeTrabalho;
+  if (document.getElementById("listaProjetos")) {
+    document.querySelector(".role").textContent = t.role;
+    document.querySelector("#sobre h2").textContent = t.aboutTitle;
+    document.querySelector("#projetos h2").textContent = t.projetosTitle;
+    document.getElementById("projetosHint").textContent = t.projetosHint;
+    document.getElementById("contatoTitulo").textContent = t.contato;
+    document.getElementById("tecnologiasTitulo").textContent = t.tecnologias;
+    document.getElementById("navSobre").textContent = t.navSobre;
+    document.getElementById("navPortfolio").textContent = t.navPortfolio;
+    document.getElementById("quemSouLabel").textContent = `${t.quemSouLabel}:`;
+    document.getElementById("ondeTrabalhoLabel").textContent = `${t.ondeTrabalhoLabel}:`;
+    document.getElementById("bio").textContent = t.bio;
+    document.getElementById("sobreTexto").textContent = t.sobre;
+    document.getElementById("quemSou").textContent = t.quemSou;
+    document.getElementById("ondeTrabalho").textContent = t.ondeTrabalho;
+  }
 
   document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === idiomaAtual));
   atualizarTextoBotaoTema();
   renderizarProjetos();
+  aplicarIdiomaProjeto();
 }
 
 function renderizarProjetos() {
@@ -169,11 +210,13 @@ function renderizarPaginaProjeto() {
 function iniciar() {
   aplicarTemaSalvo();
   configurarBotaoTema();
+  configurarIdioma();
   if (document.getElementById("listaProjetos")) {
-    configurarIdioma();
     renderizarIndex();
   }
   renderizarPaginaProjeto();
+  aplicarIdiomaProjeto();
+  document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === idiomaAtual));
 }
 
 iniciar();

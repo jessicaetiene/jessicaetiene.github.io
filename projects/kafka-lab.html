@@ -11,49 +11,40 @@
       <section class="card project-page">
         <div class="top-actions">
           <a href="../index.html" class="btn">← Voltar</a>
-          <button id="themeToggle" class="theme-toggle" type="button">🌙 Dark</button>
+          <div class="top-actions-right">
+            <button class="lang-btn" data-lang="pt" type="button" aria-label="Português">
+              <img src="https://flagcdn.com/w20/br.png" srcset="https://flagcdn.com/w40/br.png 2x" alt="" aria-hidden="true" />
+            </button>
+            <button class="lang-btn" data-lang="en" type="button" aria-label="English">
+              <img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" alt="" aria-hidden="true" />
+            </button>
+            <button id="themeToggle" class="theme-toggle theme-toggle-switch" type="button" aria-label="Alternar tema" aria-pressed="false">
+              <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span>
+            </button>
+          </div>
         </div>
         <div class="project-page-header">
           <h1 id="tituloProjeto"></h1>
-          <svg class="kafka-logo" viewBox="0 0 500 130" role="img" aria-label="Logo Kafka">
-            <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="50" cy="65" r="28" />
-              <circle cx="50" cy="20" r="16" />
-              <circle cx="120" cy="45" r="16" />
-              <circle cx="120" cy="95" r="16" />
-              <circle cx="50" cy="115" r="16" />
-              <line x1="50" y1="36" x2="50" y2="51" />
-              <line x1="73" y1="58" x2="104" y2="48" />
-              <line x1="73" y1="73" x2="104" y2="85" />
-              <line x1="50" y1="93" x2="50" y2="99" />
-            </g>
-            <text x="180" y="85" fill="currentColor" font-size="68" font-family="Inter, system-ui, sans-serif" font-weight="700">kafka</text>
-          </svg>
+          <img class="project-logo" id="projectLogo" src="https://upload.wikimedia.org/wikipedia/commons/0/01/Apache_Kafka_logo.svg" alt="Logo do projeto" />
         </div>
         <p id="descricaoProjeto"></p>
         <a id="linkProjeto" class="repo-link" href="https://github.com/jessicaetiene/kafka-lab" target="_blank" rel="noopener noreferrer">
           <svg class="repo-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M12 .6a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2.1c-3.2.7-3.8-1.4-3.8-1.4-.6-1.4-1.3-1.8-1.3-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1 .1 1.8 1.8 3.2 1.3.1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.1 3.2.8.9 1.2 1.9 1.2 3.2 0 4.5-2.8 5.5-5.4 5.8.4.4.8 1 .8 2.1v3.1c0 .3.2.7.8.6A12 12 0 0 0 12 .6Z"/>
           </svg>
-          Abrir repositório no GitHub
+          <span id="repoLabel">Abrir repositório no GitHub</span>
         </a>
         <section aria-labelledby="kafka-lab-topicos">
-          <h2 id="kafka-lab-topicos">O que estou estudando neste laboratório</h2>
-          <p>
+          <h2 id="kafka-lab-topicos"></h2>
+          <p id="kafka-lab-texto">
             Este projeto funciona como um laboratório prático para registrar meus estudos sobre Apache Kafka e
             consolidar fundamentos de mensageria orientada a eventos.
           </p>
-          <ul>
-            <li>Criação de tópicos.</li>
-            <li>Criação e evolução de schemas Avro.</li>
-            <li>Envio de mensagens para tópicos (producers).</li>
-            <li>Consumo de mensagens (consumers).</li>
-            <li>Uso de Docker para subir um cluster Kafka local.</li>
-          </ul>
+          <ul id="kafkaTopicos" class="study-list"></ul>
         </section>
       </section>
       <section>
-  <h2>Conteúdos do laboratório</h2>
+  <h2 id="kafka-lab-conteudos"></h2>
 
   <div class="links-grid">
     <a href="./topics.md">Kafka Topics</a>
