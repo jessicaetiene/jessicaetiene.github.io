@@ -16,12 +16,28 @@
     <main>
       <section id="sobre" class="card">
         <h2>Sobre mim</h2>
-        <p id="sobreTexto"></p>
+        <div class="sobre-layout">
+          <img id="fotoPerfil" class="foto-perfil" src="" alt="Foto de perfil" />
+          <div>
+            <p id="sobreTexto"></p>
+            <p><strong>Quem sou:</strong> <span id="quemSou"></span></p>
+            <p><strong>Onde trabalho:</strong> <span id="ondeTrabalho"></span></p>
+            <h3>Tecnologias</h3>
+            <div id="badgesTecnologias" class="badges"></div>
+          </div>
+        </div>
       </section>
 
       <section id="projetos" class="card">
         <h2>Projetos</h2>
+        <p>Clique em um projeto para abrir a tela com detalhes.</p>
         <div id="listaProjetos" class="grid"></div>
+      </section>
+
+      <section id="detalheProjeto" class="card hidden" aria-live="polite">
+        <h2 id="tituloDetalheProjeto"></h2>
+        <p id="descricaoDetalheProjeto"></p>
+        <a id="linkDetalheProjeto" href="#" target="_blank" rel="noopener noreferrer">Abrir repositório no GitHub</a>
       </section>
 
       <section id="contato" class="card">
