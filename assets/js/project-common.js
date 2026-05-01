@@ -1,29 +1,49 @@
-window.renderProjectPage = (projectId) => {
+window.renderProjectPage = async (projectId) => {
   const data = window.PORTFOLIO_DATA;
   if (!data) return;
 
   const getStoredLang = () => localStorage.getItem('idioma') || 'pt';
   const getStoredTheme = () => localStorage.getItem('theme') || 'light';
+  const applyTheme = (theme) => {
+    document.body.classList.toggle('dark', theme === 'dark');
+  };
 
   const project = data.projects?.[projectId];
   const root = document.getElementById('projectRoot');
   if (!project || !root) return;
 
-  const applyTheme = (theme) => {
-    document.body.classList.toggle('dark', theme === 'dark');
+  const loadDescriptions = async (lang) => {
+    const fallback = {
+      name: project.name?.[lang] || project.name?.pt || projectId,
+      description: project.description?.[lang] || project.description?.pt || ''
+    };
+
+    try {
+      const response = await fetch(`../assets/data/descriptions/${projectId}/${lang}.json`);
+      if (!response.ok) return fallback;
+      const json = await response.json();
+      return {
+        ...fallback,
+        ...json
+      };
+    } catch (_error) {
+      return fallback;
+    }
   };
 
-  const render = (lang) => {
+  const render = async (lang) => {
     const selectedLang = data.languages[lang] ? lang : 'pt';
     const t = data.languages[selectedLang];
+    const descriptionData = await loadDescriptions(selectedLang);
 
     localStorage.setItem('idioma', selectedLang);
     document.documentElement.lang = selectedLang === 'pt' ? 'pt-BR' : 'en-US';
     applyTheme(getStoredTheme());
 
-    const name = project.name[selectedLang] || project.name.pt;
-    const description = project.description[selectedLang] || project.description.pt;
-    const topics = project.studyTopics?.[selectedLang] || project.studyTopics?.pt || [];
+    const name = descriptionData.name;
+    const description = descriptionData.description;
+    const sideDescription = descriptionData.sideDescription || description;
+    const topics = descriptionData.studyTopics || project.studyTopics?.[selectedLang] || project.studyTopics?.pt || [];
 
     root.innerHTML = `
       <aside class="project-sidebar">
@@ -31,10 +51,8 @@ window.renderProjectPage = (projectId) => {
         <a class="project-nav-item" href="../index.html#portfolio">${t.back}</a>
 
         <div class="project-side-card">
-          <h3>${selectedLang === 'pt' ? 'Tópicos estudados' : 'Studied topics'}</h3>
-          <ul class="side-topics">
-            ${topics.map((topic) => `<li>${topic.title}</li>`).join('')}
-          </ul>
+          <h3>${name}</h3>
+          <p>${sideDescription}</p>
         </div>
       </aside>
 
@@ -58,12 +76,12 @@ window.renderProjectPage = (projectId) => {
           ${t.repo}
         </a>
 
-        <h2>${selectedLang === 'pt' ? 'Tópicos em estudo' : 'Topics in study'}</h2>
-        <ul class="study-list cards">
-          ${topics
-            .map((topic) => `<li><h3>${topic.title}</h3><p>${topic.description}</p></li>`)
-            .join('')}
-        </ul>
+        ${topics.length ? `
+          <h2>${selectedLang === 'pt' ? 'Tópicos em estudo' : 'Topics in study'}</h2>
+          <ul class="study-list cards">
+            ${topics.map((topic) => `<li><h3>${topic.title}</h3><p>${topic.description}</p></li>`).join('')}
+          </ul>
+        ` : ''}
       </section>
     `;
 
