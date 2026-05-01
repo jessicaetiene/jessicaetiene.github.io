@@ -328,6 +328,7 @@ function setIdioma(idioma) {
 function renderizarProjetos() {
   const t = idiomas[idiomaAtual];
   const listaProjetos = document.getElementById("listaProjetos");
+  if (!listaProjetos) return;
   listaProjetos.innerHTML = "";
   dadosSite.projetos.forEach((projeto) => {
     const projetoTraduzido = dadosProjetoTraduzidos(projeto.id);
