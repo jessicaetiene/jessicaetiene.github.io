@@ -69,3 +69,21 @@ footer { text-align: center; color: var(--footer); font-weight: 700; padding-bot
 .repo-icon { width: 19px; height: 19px; }
 .study-list { margin: .9rem 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .6rem; }
 .study-list li { padding: .7rem .85rem; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-strong); color: var(--text); font-weight: 500; }
+
+.kafka-layout { width: min(1400px, 95%); margin: 2rem auto; display: grid; grid-template-columns: 280px 1fr; overflow: hidden; }
+.kafka-sidebar { border-right: 1px solid var(--border); padding: 1.4rem; display: flex; flex-direction: column; gap: .55rem; }
+.kafka-nav-item { display: flex; gap: .75rem; align-items: center; color: var(--muted); padding: .8rem .9rem; border-radius: 12px; font-weight: 600; text-decoration: none; }
+.kafka-nav-item.active { background: var(--chip-bg); color: var(--accent); }
+.kafka-side-card { margin-top: auto; border: 1px solid var(--border); border-radius: 14px; padding: 1rem; background: var(--surface-strong); }
+.kafka-side-card h3 { margin: 0 0 .55rem; }
+.kafka-side-card p { margin: 0; color: var(--muted); line-height: 1.55; }
+.kafka-content { padding: 1.4rem; }
+.kafka-content .project-page-header p { color: var(--muted); }
+.kafka-highlight { margin: 1rem 0; border: 1px solid var(--border); border-radius: 14px; background: var(--surface-strong); padding: 1rem; }
+.cards { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.cards li h3 { margin: 0 0 .4rem; font-size: 1.05rem; }
+.cards li p { margin: 0; color: var(--muted); font-weight: 400; }
+.kafka-content-links { margin-top: 1rem; border: 1px solid var(--border); border-radius: 14px; padding: 1rem; background: var(--surface-strong); }
+.links-grid { display: flex; flex-wrap: wrap; gap: .9rem 1.2rem; }
+.links-grid a { text-decoration: none; color: var(--accent); font-weight: 700; }
+@media (max-width: 900px) { .kafka-layout { grid-template-columns: 1fr; } .kafka-sidebar { border-right: none; border-bottom: 1px solid var(--border); } }
