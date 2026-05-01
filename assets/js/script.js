@@ -100,6 +100,40 @@ const dadosSite = {
   ]
 };
 
+const descricoesProjetos = {};
+
+function basePath() {
+  return window.location.pathname.includes("/projects/") ? ".." : ".";
+}
+
+async function carregarDescricoesProjeto() {
+  const projetosIds = dadosSite.projetos.map((projeto) => projeto.id);
+  const idiomasDisponiveis = ["pt", "en"];
+  await Promise.all(
+    projetosIds.flatMap((projectId) =>
+      idiomasDisponiveis.map(async (idioma) => {
+        try {
+          const resposta = await fetch(`${basePath()}/assets/data/descriptions/${projectId}/${idioma}.json`);
+          if (!resposta.ok) return;
+          const dados = await resposta.json();
+          if (!descricoesProjetos[projectId]) descricoesProjetos[projectId] = {};
+          descricoesProjetos[projectId][idioma] = dados;
+        } catch (_) {}
+      })
+    )
+  );
+}
+
+function dadosProjetoTraduzidos(projectId) {
+  const projeto = dadosSite.projetos.find((item) => item.id === projectId);
+  if (!projeto) return null;
+  const traducao = descricoesProjetos[projectId]?.[idiomaAtual];
+  return {
+    ...projeto,
+    nome: traducao?.name || projeto.nome,
+    descricao: traducao?.description || projeto.descricao
+  };
+}
 
 
 const projectTemplates = {
@@ -173,12 +207,14 @@ function configurarBotaoTema() { const b = document.getElementById("themeToggle"
 
 function aplicarIdiomaProjeto() {
   const projectId = document.body.dataset.projectId;
-  if (projectId !== "kafka-lab") return;
   const t = idiomas[idiomaAtual];
   const backBtn = document.querySelector(".top-actions .btn");
   if (backBtn) backBtn.textContent = t.back;
   const repoLabel = document.getElementById("repoLabel");
   if (repoLabel) repoLabel.textContent = t.repoLabel;
+  const sideDescription = document.getElementById("project-side-description");
+  if (sideDescription) sideDescription.textContent = descricoesProjetos[projectId]?.[idiomaAtual]?.sideDescription || projetoDescricaoPorIdioma(t);
+  if (projectId !== "kafka-lab") return;
   const studyTitle = document.getElementById("kafka-lab-topicos");
   if (studyTitle) studyTitle.textContent = t.kafkaStudyTitle;
   const studyText = document.getElementById("kafka-lab-texto");
@@ -198,9 +234,6 @@ function aplicarIdiomaProjeto() {
     const el = document.getElementById(id);
     if (el) el.textContent = value;
   });
-
-  const sideDescription = document.getElementById("kafka-side-description");
-  if (sideDescription) sideDescription.textContent = projetoDescricaoPorIdioma(t);
 
   const topics = document.getElementById("kafkaTopicos");
   if (topics) {
@@ -226,7 +259,8 @@ function aplicarIdiomaProjeto() {
 }
 
 function projetoDescricaoPorIdioma(t) {
-  return t.kafkaStudyText;
+  const projectId = document.body.dataset.projectId;
+  return descricoesProjetos[projectId]?.[idiomaAtual]?.sideDescription || t.kafkaStudyText;
 }
 
 function setIdioma(idioma) {
@@ -255,6 +289,7 @@ function setIdioma(idioma) {
   document.querySelectorAll(".lang-btn").forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === idiomaAtual));
   atualizarTextoBotaoTema();
   renderizarProjetos();
+  renderizarPaginaProjeto();
   aplicarIdiomaProjeto();
 }
 
@@ -263,10 +298,11 @@ function renderizarProjetos() {
   const listaProjetos = document.getElementById("listaProjetos");
   listaProjetos.innerHTML = "";
   dadosSite.projetos.forEach((projeto) => {
+    const projetoTraduzido = dadosProjetoTraduzidos(projeto.id);
     const card = document.createElement("a");
     card.className = "project";
     card.href = `projects/${projeto.id}.html`;
-    card.innerHTML = `<h3>${projeto.nome}</h3><p>${projeto.descricao}</p><small>${t.openProject}</small>`;
+    card.innerHTML = `<h3>${projetoTraduzido.nome}</h3><p>${projetoTraduzido.descricao}</p><small>${t.openProject}</small>`;
     listaProjetos.appendChild(card);
   });
 }
@@ -307,7 +343,7 @@ function renderizarPaginaProjeto() {
   const projectId = document.body.dataset.projectId;
   if (!projectId) return;
 
-  const projeto = dadosSite.projetos.find((item) => item.id === projectId);
+  const projeto = dadosProjetoTraduzidos(projectId);
   if (!projeto) return;
 
   const titulo = document.getElementById("tituloProjeto");
@@ -319,7 +355,8 @@ function renderizarPaginaProjeto() {
   if (link) link.href = projeto.link;
 }
 
-function iniciar() {
+async function iniciar() {
+  await carregarDescricoesProjeto();
   renderProjectTemplate();
   aplicarTemaSalvo();
   configurarBotaoTema();

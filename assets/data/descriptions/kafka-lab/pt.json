@@ -1,0 +1,5 @@
+{
+  "name": "Kafka Lab",
+  "description": "Laboratório para aprender e praticar conceitos do Apache Kafka.",
+  "sideDescription": "Laboratório para estudar fundamentos de mensageria orientada a eventos com Apache Kafka."
+}
