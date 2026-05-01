@@ -1,16 +1,137 @@
 (() => {
   const data = window.PORTFOLIO_DATA;
-  const lang = localStorage.getItem('idioma') || 'pt';
-  const t = data.languages[lang];
-  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en-US';
-  document.title = t.title;
-  const set = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
-  set('nome', data.profile.name);
-  set('navSobre', t.navAbout);
-  set('navPortfolio', t.navPortfolio);
-  set('contatoTitulo', t.contact);
-  set('tecnologiasTitulo', t.technologies);
-  set('bio', data.profile.bio[lang]);
-  set('projetosHint', t.projectsHint);
-  const photo = document.getElementById('fotoPerfil'); if (photo) photo.src = './resources/images/profile.jpeg';
+  if (!data) return;
+
+  const CONTACTS = [
+    { label: 'GitHub', value: 'jessicaetiene', href: 'https://github.com/jessicaetiene' },
+    { label: 'LinkedIn', value: 'jessicaetiene', href: 'https://www.linkedin.com/in/jessicaetiene/' },
+    { label: 'Email', value: 'jessicaetiene@gmail.com', href: 'mailto:jessicaetiene@gmail.com' }
+  ];
+
+  const TECHNOLOGIES = ['Java', 'Kotlin', 'Spring Boot', 'Kafka', 'PostgreSQL', 'Docker', 'AWS'];
+
+  const getStoredLang = () => localStorage.getItem('idioma') || 'pt';
+  const getStoredTheme = () => localStorage.getItem('theme') || 'light';
+
+  const setText = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  };
+
+  const renderContacts = () => {
+    const list = document.getElementById('contatos');
+    if (!list) return;
+    list.innerHTML = '';
+    CONTACTS.forEach(({ label, value, href }) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = href;
+      a.target = href.startsWith('http') ? '_blank' : '_self';
+      a.rel = href.startsWith('http') ? 'noopener noreferrer' : '';
+      a.textContent = `${label}: ${value}`;
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  };
+
+  const renderTechBadges = () => {
+    const container = document.getElementById('badgesTecnologias');
+    if (!container) return;
+    container.innerHTML = '';
+    TECHNOLOGIES.forEach((tech) => {
+      const badge = document.createElement('span');
+      badge.className = 'role';
+      badge.style.margin = '0';
+      badge.textContent = tech;
+      container.appendChild(badge);
+    });
+  };
+
+  const renderProjects = (lang) => {
+    const list = document.getElementById('listaProjetos');
+    if (!list) return;
+    list.innerHTML = '';
+    Object.entries(data.projects).forEach(([id, project]) => {
+      const card = document.createElement('a');
+      card.className = 'project';
+      card.href = `./projects/${id}.html`;
+      const title = document.createElement('h3');
+      title.textContent = project.name[lang];
+      const desc = document.createElement('p');
+      desc.textContent = project.description[lang];
+      const cta = document.createElement('small');
+      cta.textContent = lang === 'pt' ? 'Ver detalhes →' : 'View details →';
+      card.append(title, desc, cta);
+      list.appendChild(card);
+    });
+  };
+
+  const applyTheme = (theme, t) => {
+    const darkMode = theme === 'dark';
+    document.body.classList.toggle('dark', darkMode);
+    const toggle = document.getElementById('themeToggle');
+    if (toggle) toggle.textContent = darkMode ? t.themeLight : t.themeDark;
+  };
+
+  const applyLanguage = (lang) => {
+    const selectedLang = data.languages[lang] ? lang : 'pt';
+    const t = data.languages[selectedLang];
+    localStorage.setItem('idioma', selectedLang);
+
+    document.documentElement.lang = selectedLang === 'pt' ? 'pt-BR' : 'en-US';
+    document.title = t.title;
+
+    setText('nome', data.profile.name);
+    setText('navSobre', t.navAbout);
+    setText('navPortfolio', t.navPortfolio);
+    setText('contatoTitulo', t.contact);
+    setText('tecnologiasTitulo', t.technologies);
+    setText('bio', data.profile.bio[selectedLang]);
+    setText('projetosHint', t.projectsHint);
+
+    const aboutTitle = document.querySelector('#sobre h2');
+    if (aboutTitle) aboutTitle.textContent = t.aboutTitle;
+    const projectsTitle = document.querySelector('#projetos h2');
+    if (projectsTitle) projectsTitle.textContent = t.projectsTitle;
+
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.lang === selectedLang);
+    });
+
+    applyTheme(getStoredTheme(), t);
+    renderProjects(selectedLang);
+  };
+
+  const bindEvents = () => {
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+
+    const toggle = document.getElementById('themeToggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+        localStorage.setItem('theme', nextTheme);
+        applyLanguage(getStoredLang());
+      });
+    }
+
+    document.querySelectorAll('.nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.nav-link').forEach((el) => el.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+  };
+
+  const photo = document.getElementById('fotoPerfil');
+  if (photo) photo.src = data.profile.photo;
+
+  setText('ano', String(new Date().getFullYear()));
+  setText('assinatura', data.profile.name);
+
+  renderContacts();
+  renderTechBadges();
+  bindEvents();
+  applyLanguage(getStoredLang());
 })();
