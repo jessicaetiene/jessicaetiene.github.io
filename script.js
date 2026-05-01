@@ -2,7 +2,7 @@ const idiomas = {
   pt: {
     lang: "pt-BR",
     title: "Portfólio | Jéssica Etiene",
-    role: "Web Developer",
+    role: "💻 Engenheira de Software",
     contato: "Contato",
     tecnologias: "Tecnologias",
     navSobre: "Sobre",
@@ -13,7 +13,7 @@ const idiomas = {
     quemSouLabel: "Quem sou",
     ondeTrabalhoLabel: "Onde trabalho",
     projetosTitle: "Projetos",
-    projetosHint: "Clique em um projeto para abrir sua própria página HTML com detalhes.",
+    projetosHint: "Clique em um projeto para acessar os detalhes",
     openProject: "Abrir página do projeto",
     bio: "Engenheira de software focada em construir sistemas backend escaláveis, resilientes e orientados a dados.",
     sobre: "Desenvolvo soluções com foco em qualidade, performance e boas práticas, transformando requisitos complexos em produtos confiáveis e de alto impacto.",
@@ -23,7 +23,7 @@ const idiomas = {
   en: {
     lang: "en-US",
     title: "Portfolio | Jéssica Etiene",
-    role: "Web Developer",
+    role: "💻 Software Engineer",
     contato: "Contact",
     tecnologias: "Technologies",
     navSobre: "About",
@@ -34,7 +34,7 @@ const idiomas = {
     quemSouLabel: "Who I am",
     ondeTrabalhoLabel: "Where I work",
     projetosTitle: "Projects",
-    projetosHint: "Click a project to open its own HTML page with details.",
+    projetosHint: "Click a project to access its details.",
     openProject: "Open project page",
     bio: "Software engineer focused on building scalable, resilient, and data-driven backend systems.",
     sobre: "I design and develop solutions with a strong emphasis on quality, performance, and best practices, turning complex requirements into reliable, high-impact products.",
@@ -60,10 +60,10 @@ const dadosSite = {
   projetos: [
     { id: "catalog-pricing-service", nome: "Catalog Pricing Service", descricao: "Mini projeto de API em Kotlin", link: "https://github.com/jessicaetiene/catalog-pricing-service" },
     { id: "kafka-lab", nome: "Kafka Lab", descricao: "Laboratório para aprender e praticar conceitos do Apache Kafka.", link: "https://github.com/jessicaetiene/kafka-lab" },
-    { id: "projeto-3", nome: "Projeto 3", descricao: "Dashboard de métricas com visualizações interativas.", link: "https://github.com/jessicaetiene/projeto-3" },
-    { id: "projeto-4", nome: "Projeto 4", descricao: "Sistema de autenticação com fluxo de recuperação de senha.", link: "https://github.com/jessicaetiene/projeto-4" },
-    { id: "projeto-5", nome: "Projeto 5", descricao: "E-commerce com carrinho e simulação de pagamento.", link: "https://github.com/jessicaetiene/projeto-5" },
-    { id: "projeto-6", nome: "Projeto 6", descricao: "Aplicativo de tarefas com filtros e persistência local.", link: "https://github.com/jessicaetiene/projeto-6" }
+    // { id: "projeto-3", nome: "Projeto 3", descricao: "Dashboard de métricas com visualizações interativas.", link: "https://github.com/jessicaetiene/projeto-3" },
+    // { id: "projeto-4", nome: "Projeto 4", descricao: "Sistema de autenticação com fluxo de recuperação de senha.", link: "https://github.com/jessicaetiene/projeto-4" },
+    // { id: "projeto-5", nome: "Projeto 5", descricao: "E-commerce com carrinho e simulação de pagamento.", link: "https://github.com/jessicaetiene/projeto-5" },
+    // { id: "projeto-6", nome: "Projeto 6", descricao: "Aplicativo de tarefas com filtros e persistência local.", link: "https://github.com/jessicaetiene/projeto-6" }
   ],
   contatos: [
     { icon: "🐙", label: "GitHub", valor: "github.com/jessicaetiene", href: "https://github.com/jessicaetiene" },
