@@ -7,6 +7,8 @@ window.PORTFOLIO_DATA = {
       aboutTitle: 'Sobre mim',
       projectsTitle: 'Projetos',
       projectsHint: 'Clique em um projeto para acessar os detalhes.',
+      whoLabel: 'Quem sou:',
+      whereLabel: 'Onde trabalho:',
       contact: 'Contato',
       technologies: 'Tecnologias',
       role: 'Software Engineer',
@@ -22,6 +24,8 @@ window.PORTFOLIO_DATA = {
       aboutTitle: 'About me',
       projectsTitle: 'Projects',
       projectsHint: 'Click a project to access its details.',
+      whoLabel: 'Who I am:',
+      whereLabel: 'Where I work:',
       contact: 'Contact',
       technologies: 'Technologies',
       role: 'Software Engineer',
@@ -37,6 +41,14 @@ window.PORTFOLIO_DATA = {
     bio: {
       pt: 'Engenheira de software focada em construir sistemas backend escaláveis, resilientes e orientados a dados.',
       en: 'Software engineer focused on building scalable, resilient, and data-driven backend systems.'
+    },
+    who: {
+      pt: 'Engenheira de software com foco em backend, apaixonada por arquitetura distribuída e boas práticas de engenharia.',
+      en: 'Software engineer focused on backend development, passionate about distributed architecture and engineering best practices.'
+    },
+    where: {
+      pt: 'Atuo como engenheira de software remota, colaborando em produtos digitais e APIs de alta disponibilidade.',
+      en: 'I work remotely as a software engineer, contributing to digital products and highly available APIs.'
     }
   },
   projects: {
