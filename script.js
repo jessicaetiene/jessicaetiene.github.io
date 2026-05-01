@@ -15,9 +15,9 @@ const idiomas = {
     projetosTitle: "Projetos",
     projetosHint: "Clique em um projeto para abrir sua própria página HTML com detalhes.",
     openProject: "Abrir página do projeto",
-    bio: "Desenvolvedora focada em criar experiências web modernas, funcionais e acessíveis.",
-    sobre: "Crio interfaces com foco em clareza, estética e facilidade de uso para transformar ideias em produtos digitais memoráveis.",
-    quemSou: "Sou uma desenvolvedora front-end apaixonada por interfaces limpas, performance e boas práticas de código.",
+    bio: "Engenheira de software focada em construir sistemas backend escaláveis, resilientes e orientados a dados.",
+    sobre: "Desenvolvo soluções com foco em qualidade, performance e boas práticas, transformando requisitos complexos em produtos confiáveis e de alto impacto.",
+    quemSou: "Sou uma desenvolvedora backend apaixonada por arquitetura de sistemas, microsserviços e engenharia de dados. Tenho experiência em projetar e implementar soluções em ambientes cloud (especialmente AWS), além de atuar na produção e integração de modelos de machine learning.",
     ondeTrabalho: "Atualmente trabalho na Empresa X como Desenvolvedora Front-end.",
   },
   en: {
@@ -36,9 +36,9 @@ const idiomas = {
     projetosTitle: "Projects",
     projetosHint: "Click a project to open its own HTML page with details.",
     openProject: "Open project page",
-    bio: "Developer focused on building modern, functional, and accessible web experiences.",
-    sobre: "I build interfaces focused on clarity, aesthetics, and ease of use to transform ideas into memorable digital products.",
-    quemSou: "I'm a front-end developer passionate about clean interfaces, performance, and code best practices.",
+    bio: "Software engineer focused on building scalable, resilient, and data-driven backend systems.",
+    sobre: "I design and develop solutions with a strong emphasis on quality, performance, and best practices, turning complex requirements into reliable, high-impact products.",
+    quemSou: "I am a backend developer passionate about system architecture, microservices, and data engineering. I have experience designing and implementing cloud-based solutions (especially on AWS), as well as deploying and integrating machine learning models into production environments.",
     ondeTrabalho: "I currently work at Company X as a Front-end Developer.",
   }
 };
@@ -46,7 +46,7 @@ const idiomas = {
 const dadosSite = {
   nome: "Jéssica Etiene",
   assinatura: "Jéssica Etiene",
-  fotoPerfil: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=760&q=80",
+  fotoPerfil: "./resources/images/profile.jpeg",
   tecnologias: [
     "https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white",
     "https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white",
@@ -58,8 +58,8 @@ const dadosSite = {
     "https://img.shields.io/badge/Clojure-5881D8?style=for-the-badge&logo=clojure&logoColor=white"
   ],
   projetos: [
-    { id: "projeto-1", nome: "Projeto 1", descricao: "Landing page responsiva com HTML, CSS e JavaScript.", link: "https://github.com/jessicaetiene/projeto-1" },
-    { id: "projeto-2", nome: "Projeto 2", descricao: "Aplicação web com integração de API externa.", link: "https://github.com/jessicaetiene/projeto-2" },
+    { id: "catalog-pricing-service", nome: "Catalog Pricing Service", descricao: "Mini projeto de API em Kotlin", link: "https://github.com/jessicaetiene/catalog-pricing-service" },
+    { id: "kafka-lab", nome: "Kafka Lab", descricao: "Laboratório para aprender e praticar conceitos do Apache Kafka.", link: "https://github.com/jessicaetiene/projects/kafka-lab" },
     { id: "projeto-3", nome: "Projeto 3", descricao: "Dashboard de métricas com visualizações interativas.", link: "https://github.com/jessicaetiene/projeto-3" },
     { id: "projeto-4", nome: "Projeto 4", descricao: "Sistema de autenticação com fluxo de recuperação de senha.", link: "https://github.com/jessicaetiene/projeto-4" },
     { id: "projeto-5", nome: "Projeto 5", descricao: "E-commerce com carrinho e simulação de pagamento.", link: "https://github.com/jessicaetiene/projeto-5" },
@@ -112,7 +112,7 @@ function renderizarProjetos() {
   dadosSite.projetos.forEach((projeto) => {
     const card = document.createElement("a");
     card.className = "project";
-    card.href = `${projeto.id}.html`;
+    card.href = `projects/${projeto.id}.html`;
     card.innerHTML = `<h3>${projeto.nome}</h3><p>${projeto.descricao}</p><small>${t.openProject}</small>`;
     listaProjetos.appendChild(card);
   });
