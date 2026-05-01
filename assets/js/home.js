@@ -3,12 +3,20 @@
   if (!data) return;
 
   const CONTACTS = [
-    { label: 'GitHub', value: 'jessicaetiene', href: 'https://github.com/jessicaetiene' },
-    { label: 'LinkedIn', value: 'jessicaetiene', href: 'https://www.linkedin.com/in/jessicaetiene/' },
-    { label: 'Email', value: 'jessicaetiene@gmail.com', href: 'mailto:jessicaetiene@gmail.com' }
+    { icon: '🐙', label: 'GitHub', value: 'jessicaetiene', href: 'https://github.com/jessicaetiene' },
+    { icon: '💼', label: 'LinkedIn', value: 'jessicaetiene', href: 'https://www.linkedin.com/in/jessicaetiene/' },
+    { icon: '✉️', label: 'Email', value: 'jessicaetiene@gmail.com', href: 'mailto:jessicaetiene@gmail.com' }
   ];
 
-  const TECHNOLOGIES = ['Java', 'Kotlin', 'Spring Boot', 'Kafka', 'PostgreSQL', 'Docker', 'AWS'];
+  const TECHNOLOGIES = [
+    { name: 'Java', badge: 'https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white' },
+    { name: 'Kotlin', badge: 'https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white' },
+    { name: 'Spring Boot', badge: 'https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white' },
+    { name: 'Kafka', badge: 'https://img.shields.io/badge/Kafka-231F20?style=for-the-badge&logo=apachekafka&logoColor=white' },
+    { name: 'PostgreSQL', badge: 'https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white' },
+    { name: 'Docker', badge: 'https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white' },
+    { name: 'AWS', badge: 'https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white' }
+  ];
 
   const getStoredLang = () => localStorage.getItem('idioma') || 'pt';
   const getStoredTheme = () => localStorage.getItem('theme') || 'light';
@@ -22,13 +30,13 @@
     const list = document.getElementById('contatos');
     if (!list) return;
     list.innerHTML = '';
-    CONTACTS.forEach(({ label, value, href }) => {
+    CONTACTS.forEach(({ icon, label, value, href }) => {
       const li = document.createElement('li');
       const a = document.createElement('a');
       a.href = href;
       a.target = href.startsWith('http') ? '_blank' : '_self';
       a.rel = href.startsWith('http') ? 'noopener noreferrer' : '';
-      a.textContent = `${label}: ${value}`;
+      a.innerHTML = `<span class="contact-icon" aria-hidden="true">${icon}</span><span>${label}: ${value}</span>`;
       li.appendChild(a);
       list.appendChild(li);
     });
@@ -38,12 +46,13 @@
     const container = document.getElementById('badgesTecnologias');
     if (!container) return;
     container.innerHTML = '';
-    TECHNOLOGIES.forEach((tech) => {
-      const badge = document.createElement('span');
-      badge.className = 'role';
-      badge.style.margin = '0';
-      badge.textContent = tech;
-      container.appendChild(badge);
+    TECHNOLOGIES.forEach(({ name, badge }) => {
+      const image = document.createElement('img');
+      image.className = 'tech-badge';
+      image.src = badge;
+      image.alt = `${name} badge`;
+      image.loading = 'lazy';
+      container.appendChild(image);
     });
   };
 
@@ -84,6 +93,7 @@
     setText('nome', data.profile.name);
     setText('navSobre', t.navAbout);
     setText('navPortfolio', t.navPortfolio);
+    setText('roleLabel', t.role);
     setText('contatoTitulo', t.contact);
     setText('tecnologiasTitulo', t.technologies);
     setText('bio', data.profile.bio[selectedLang]);

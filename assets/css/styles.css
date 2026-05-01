@@ -29,6 +29,8 @@ body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--text);
 .contact-list li { margin-bottom: .5rem; }
 .contact-list a { color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: .5rem; }
 .contact-list a:hover { color: var(--accent); }
+.contact-icon { font-size: 1rem; line-height: 1; width: 1.2rem; text-align: center; }
+
 .badges { display: flex; flex-wrap: wrap; gap: .45rem; }
 .tech-badge { height: 28px; }
 .content { padding: 1.3rem; }
