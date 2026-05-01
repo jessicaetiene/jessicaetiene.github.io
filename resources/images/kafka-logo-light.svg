@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" role="img" aria-labelledby="title desc">
+  <title id="title">Apache Kafka logo</title>
+  <desc id="desc">Wordmark Kafka with circular mark</desc>
+  <g fill="#F8FAFC">
+    <circle cx="36" cy="22" r="9"/>
+    <circle cx="36" cy="60" r="9"/>
+    <circle cx="36" cy="98" r="9"/>
+    <rect x="33" y="22" width="6" height="76" rx="3"/>
+    <path d="M36 60h48" stroke="#F8FAFC" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <circle cx="84" cy="60" r="9"/>
+    <text x="108" y="75" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="700">kafka</text>
+  </g>
+</svg>
