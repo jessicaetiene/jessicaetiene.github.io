@@ -4,69 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Laboratório Kafka | Jéssica Etiene</title>
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
   </head>
   <body data-project-id="kafka-lab">
-    <main class="kafka-layout card">
-      <aside class="kafka-sidebar">
-        <a href="../index.html" class="kafka-nav-item active"><span>🏠</span><span id="kafka-nav-home">Início</span></a>
-        <div class="kafka-nav-item"><span>📖</span><span id="kafka-nav-topics">Tópicos</span></div>
-        <div class="kafka-nav-item"><span>🧩</span><span id="kafka-nav-partitions">Partições</span></div>
-        <div class="kafka-nav-item"><span>📨</span><span id="kafka-nav-producers">Producers</span></div>
-        <div class="kafka-nav-item"><span>👥</span><span id="kafka-nav-consumers">Consumers</span></div>
-        <div class="kafka-nav-item"><span>🛡️</span><span id="kafka-nav-schema">Schema Registry</span></div>
-        <div class="kafka-nav-item"><span>🐳</span><span id="kafka-nav-docker">Kafka com Docker</span></div>
-
-        <section class="kafka-side-card">
-          <h3>Kafka Lab</h3>
-          <div class="kafka-side-logo" aria-label="Logo do Kafka">
-            <img src="../resources/images/kafka-logo-dark.svg" alt="Logo do Apache Kafka" class="kafka-logo kafka-logo-dark" />
-            <img src="../resources/images/kafka-logo-light.svg" alt="Logo do Apache Kafka" class="kafka-logo kafka-logo-light" />
-          </div>
-        </section>
-      </aside>
-
-      <section class="kafka-content">
-        <div class="top-actions">
-          <a href="../index.html" class="btn">← Voltar</a>
-          <div class="top-actions-right">
-            <button class="lang-btn" data-lang="pt" type="button" aria-label="Português">
-              <img src="https://flagcdn.com/w20/br.png" srcset="https://flagcdn.com/w40/br.png 2x" alt="" aria-hidden="true" />
-            </button>
-            <button class="lang-btn" data-lang="en" type="button" aria-label="English">
-              <img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" alt="" aria-hidden="true" />
-            </button>
-            <button id="themeToggle" class="theme-toggle theme-toggle-switch" type="button" aria-label="Alternar tema" aria-pressed="false">
-              <span class="toggle-track" aria-hidden="true">
-                <span class="toggle-icon toggle-icon-sun">☀️</span>
-                <span class="toggle-thumb"></span>
-                <span class="toggle-icon toggle-icon-moon">🌙</span>
-              </span>
-            </button>
-          </div>
-        </div>
-
-        <div class="project-page-header">
-          <div>
-            <h1 id="tituloProjeto"></h1>
-            <p id="descricaoProjeto"></p>
-            <a id="linkProjeto" class="repo-link" href="https://github.com/jessicaetiene/kafka-lab" target="_blank" rel="noopener noreferrer">
-              <svg class="repo-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .6a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2.1c-3.2.7-3.8-1.4-3.8-1.4-.6-1.4-1.3-1.8-1.3-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1 .1 1.8 1.8 3.2 1.3.1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.1 3.2.8.9 1.2 1.9 1.2 3.2 0 4.5-2.8 5.5-5.4 5.8.4.4.8 1 .8 2.1v3.1c0 .3.2.7.8.6A12 12 0 0 0 12 .6Z"/></svg>
-              <span id="repoLabel">Abrir repositório no GitHub</span>
-            </a>
-          </div>
-        </div>
-
-        <section class="kafka-highlight" aria-labelledby="kafka-lab-topicos">
-          <h2 id="kafka-lab-topicos"></h2>
-          <p id="kafka-lab-texto"></p>
-        </section>
-
-        <ul id="kafkaTopicos" class="study-list cards"></ul>
-
-      </section>
-    </main>
-
-    <script src="../script.js"></script>
+    <main id="projectRoot" class="project-layout card"></main>
+    <script src="../assets/js/script.js"></script>
   </body>
 </html>
