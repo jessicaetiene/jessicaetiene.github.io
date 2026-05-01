@@ -53,14 +53,19 @@ nav { display: flex; gap: .5rem; margin-left: 1rem; }
 .project-page-wrapper { width: min(900px, 94%); margin: 2.2rem auto; }
 .project-page { padding: 1.4rem; }
 .project-page .top-actions { display: flex; justify-content: space-between; }
+.top-actions-right { display: flex; align-items: center; gap: .45rem; }
+.theme-toggle-switch { padding: .28rem; border-radius: 999px; min-width: 62px; }
+.toggle-track { display: inline-flex; align-items: center; width: 44px; height: 24px; background: var(--border); border-radius: 999px; padding: 2px; transition: background .2s ease; }
+.toggle-thumb { width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2); transform: translateX(0); transition: transform .2s ease; }
+body.dark .toggle-track { background: var(--accent); }
+body.dark .toggle-thumb { transform: translateX(20px); }
 footer { text-align: center; color: var(--footer); font-weight: 700; padding-bottom: 1rem; }
 @media (max-width: 860px) { .page-shell { grid-template-columns: 1fr; } .content-header { flex-wrap: wrap; gap: .6rem; } nav { margin-left: 0; } }
 
 .project-page-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.kafka-logo { width: min(240px, 42vw); height: auto; color: #201b22; opacity: .9; flex-shrink: 0; }
-body.dark .kafka-logo { color: #f1edf6; opacity: .88; }
-.repo-link { display: inline-flex; align-items: center; gap: .5rem; color: #4c1d95; font-weight: 600; text-underline-offset: 3px; }
-.repo-link:hover { color: var(--accent); }
-.repo-icon { width: 18px; height: 18px; }
-body.dark .repo-link { color: #d8b4fe; }
-body.dark .repo-link:hover { color: #f5d0fe; }
+.project-logo { width: min(220px, 42vw); height: auto; max-height: 86px; object-fit: contain; flex-shrink: 0; }
+.repo-link { margin: .5rem 0 1rem; display: inline-flex; align-items: center; gap: .6rem; padding: .55rem .95rem; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-strong); text-decoration: none; color: var(--text); font-weight: 700; }
+.repo-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+.repo-icon { width: 19px; height: 19px; }
+.study-list { margin: .9rem 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .6rem; }
+.study-list li { padding: .7rem .85rem; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-strong); color: var(--text); font-weight: 500; }
