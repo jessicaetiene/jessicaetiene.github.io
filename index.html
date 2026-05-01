@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Portfólio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1 id="nome"></h1>
+      <p id="bio"></p>
+      <a class="btn" href="#projetos">Ver projetos</a>
+    </header>
+
+    <main>
+      <section id="sobre" class="card">
+        <h2>Sobre mim</h2>
+        <p id="sobreTexto"></p>
+      </section>
+
+      <section id="projetos" class="card">
+        <h2>Projetos</h2>
+        <div id="listaProjetos" class="grid"></div>
+      </section>
+
+      <section id="contato" class="card">
+        <h2>Contato</h2>
+        <ul id="contatos"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <small>© <span id="ano"></span> <span id="assinatura"></span></small>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
