@@ -2,7 +2,7 @@ const dadosSite = {
   nome: "Jessica Etiene",
   assinatura: "Jessica Etiene",
   bio: "Desenvolvedora focada em criar experiências web modernas, funcionais e acessíveis.",
-  sobre: "Este site é dinâmico: os projetos e informações de contato são montados via JavaScript, facilitando a atualização sem mexer no HTML.",
+  sobre: "Crio interfaces com foco em clareza, estética e facilidade de uso para transformar ideias em produtos digitais memoráveis.",
   quemSou: "Sou uma desenvolvedora front-end apaixonada por interfaces limpas, performance e boas práticas de código.",
   ondeTrabalho: "Atualmente trabalho na Empresa X como Desenvolvedora Front-end.",
   fotoPerfil: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
@@ -16,15 +16,15 @@ const dadosSite = {
     { id: "projeto-6", nome: "Projeto 6", descricao: "Aplicativo de tarefas com filtros e persistência local.", link: "https://github.com/jessicaetiene/projeto-6" }
   ],
   contatos: [
-    { label: "GitHub", valor: "https://github.com/jessicaetiene" },
-    { label: "LinkedIn", valor: "https://linkedin.com/in/jessicaetiene" },
+    { label: "GitHub", valor: "github.com/jessicaetiene" },
+    { label: "LinkedIn", valor: "linkedin.com/in/jessicaetiene" },
     { label: "Email", valor: "jessica@email.com" }
   ]
 };
 
 function aplicarTemaSalvo() {
   const temaSalvo = localStorage.getItem("tema");
-  const usarDark = temaSalvo ? temaSalvo === "dark" : true;
+  const usarDark = temaSalvo ? temaSalvo === "dark" : false;
   document.body.classList.toggle("dark", usarDark);
   atualizarTextoBotaoTema();
 }
@@ -38,14 +38,12 @@ function alternarTema() {
 function atualizarTextoBotaoTema() {
   const botao = document.getElementById("themeToggle");
   if (!botao) return;
-  const darkAtivo = document.body.classList.contains("dark");
-  botao.textContent = darkAtivo ? "☀️ Light" : "🌙 Dark";
+  botao.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
 }
 
 function configurarBotaoTema() {
   const botao = document.getElementById("themeToggle");
-  if (!botao) return;
-  botao.addEventListener("click", alternarTema);
+  if (botao) botao.addEventListener("click", alternarTema);
 }
 
 function renderizarIndex() {
@@ -58,26 +56,21 @@ function renderizarIndex() {
   document.getElementById("fotoPerfil").src = dadosSite.fotoPerfil;
   document.getElementById("ano").textContent = new Date().getFullYear();
 
-  const badgesTecnologias = document.getElementById("badgesTecnologias");
+  const badges = document.getElementById("badgesTecnologias");
   dadosSite.tecnologias.forEach((tecnologia) => {
     const badge = document.createElement("span");
     badge.className = "badge";
     badge.textContent = tecnologia;
-    badgesTecnologias.appendChild(badge);
+    badges.appendChild(badge);
   });
 
   const listaProjetos = document.getElementById("listaProjetos");
   dadosSite.projetos.forEach((projeto) => {
-    const artigo = document.createElement("a");
-    artigo.className = "project";
-    artigo.href = `project.html?id=${encodeURIComponent(projeto.id)}`;
-    artigo.innerHTML = `
-      <h3>${projeto.nome}</h3>
-      <p>${projeto.descricao}</p>
-      <small>Clique para abrir os detalhes</small>
-    `;
-
-    listaProjetos.appendChild(artigo);
+    const card = document.createElement("a");
+    card.className = "project";
+    card.href = `${projeto.id}.html`;
+    card.innerHTML = `<h3>${projeto.nome}</h3><p>${projeto.descricao}</p><small>Abrir página do projeto</small>`;
+    listaProjetos.appendChild(card);
   });
 
   const contatos = document.getElementById("contatos");
@@ -89,37 +82,21 @@ function renderizarIndex() {
 }
 
 function renderizarPaginaProjeto() {
-  const params = new URLSearchParams(window.location.search);
-  const idProjeto = params.get("id");
-  const projeto = dadosSite.projetos.find((item) => item.id === idProjeto);
+  const id = document.body.dataset.projectId;
+  if (!id) return;
+  const projeto = dadosSite.projetos.find((item) => item.id === id);
+  if (!projeto) return;
 
-  const titulo = document.getElementById("tituloProjeto");
-  const descricao = document.getElementById("descricaoProjeto");
-  const link = document.getElementById("linkProjeto");
-
-  if (!projeto) {
-    titulo.textContent = "Projeto não encontrado";
-    descricao.textContent = "Verifique o link e tente novamente.";
-    link.style.display = "none";
-    return;
-  }
-
-  titulo.textContent = projeto.nome;
-  descricao.textContent = projeto.descricao;
-  link.href = projeto.link;
+  document.getElementById("tituloProjeto").textContent = projeto.nome;
+  document.getElementById("descricaoProjeto").textContent = projeto.descricao;
+  document.getElementById("linkProjeto").href = projeto.link;
 }
 
 function iniciar() {
   aplicarTemaSalvo();
   configurarBotaoTema();
-
-  if (document.getElementById("listaProjetos")) {
-    renderizarIndex();
-  }
-
-  if (document.getElementById("tituloProjeto")) {
-    renderizarPaginaProjeto();
-  }
+  if (document.getElementById("listaProjetos")) renderizarIndex();
+  if (document.getElementById("tituloProjeto")) renderizarPaginaProjeto();
 }
 
 iniciar();

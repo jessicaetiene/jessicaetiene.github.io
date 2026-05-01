@@ -3,45 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu Portfólio</title>
+    <title>Portfólio | Jessica Etiene</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="hero">
-      <div class="top-actions">
-        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Alternar tema">🌙 Dark</button>
-      </div>
-      <h1 id="nome"></h1>
-      <p id="bio"></p>
-      <a class="btn" href="#projetos">Ver projetos</a>
-    </header>
+    <div class="page-shell">
+      <aside class="sidebar card">
+        <img id="fotoPerfil" class="avatar" src="" alt="Foto de perfil" />
+        <h1 id="nome"></h1>
+        <p class="role">Web Developer</p>
 
-    <main>
-      <section id="sobre" class="card">
-        <h2>Sobre mim</h2>
-        <div class="sobre-layout">
-          <img id="fotoPerfil" class="foto-perfil" src="" alt="Foto de perfil" />
-          <div>
-            <p id="sobreTexto"></p>
-            <p><strong>Quem sou:</strong> <span id="quemSou"></span></p>
-            <p><strong>Onde trabalho:</strong> <span id="ondeTrabalho"></span></p>
-            <h3>Tecnologias</h3>
-            <div id="badgesTecnologias" class="badges"></div>
-          </div>
+        <div class="sidebar-block">
+          <h2>Contato</h2>
+          <ul id="contatos" class="contact-list"></ul>
         </div>
-      </section>
 
-      <section id="projetos" class="card">
-        <h2>Projetos</h2>
-        <p>Clique em um projeto para abrir uma página com detalhes.</p>
-        <div id="listaProjetos" class="grid"></div>
-      </section>
+        <div class="sidebar-block">
+          <h2>Tecnologias</h2>
+          <div id="badgesTecnologias" class="badges"></div>
+        </div>
+      </aside>
 
-      <section id="contato" class="card">
-        <h2>Contato</h2>
-        <ul id="contatos"></ul>
-      </section>
-    </main>
+      <main class="content card">
+        <header class="content-header">
+          <nav>
+            <a href="#sobre" class="nav-link active">About</a>
+            <a href="#projetos" class="nav-link">Portfolio</a>
+          </nav>
+          <button id="themeToggle" class="theme-toggle" type="button" aria-label="Alternar tema">🌙 Dark</button>
+        </header>
+
+        <section id="sobre" class="section">
+          <h2>About Me</h2>
+          <p id="bio"></p>
+          <p id="sobreTexto"></p>
+          <p><strong>Quem sou:</strong> <span id="quemSou"></span></p>
+          <p><strong>Onde trabalho:</strong> <span id="ondeTrabalho"></span></p>
+        </section>
+
+        <section id="projetos" class="section">
+          <h2>Projetos</h2>
+          <p>Clique em um projeto para abrir sua própria página HTML com detalhes.</p>
+          <div id="listaProjetos" class="project-grid"></div>
+        </section>
+      </main>
+    </div>
 
     <footer>
       <small>© <span id="ano"></span> <span id="assinatura"></span></small>
