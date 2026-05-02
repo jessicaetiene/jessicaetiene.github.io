@@ -1,11 +1,27 @@
 {
   "name": "Catalog Pricing Service",
-  "description": "Mini projeto de API em Kotlin.",
-  "sideDescription": "Mini projeto de API em Kotlin para estudo de arquitetura backend e regras de preço.",
+  "description": "Um serviço de backend construído com Kotlin e Spring Boot",
+  "sideDescription": "Um serviço de backend construído com Kotlin e Spring Boot para simular um catálogo de produtos e um sistema de precificação.",
   "studyTopics": [
     {
       "title": "API Rest",
       "description": "Design de API, princípios REST, métodos HTTP, códigos de status e melhores práticas para construção de APIs RESTful."
+    },
+    {
+      "title": "Kotlin e Spring Boot",
+      "description": "Aprenda Kotlin e Spring Boot para construir serviços de backend."
+    },
+    {
+      "title": "Cache com Redis",
+      "description": "Implemente cache com Redis para melhorar o desempenho e reduzir a latência."
+    },
+    {
+      "title": "Integração com Testcontainers",
+      "description": "Use Testcontainers para testes de integração com dependências reais como Redis e bancos de dados."
+    },
+    {
+      "title": "CI/CD com GitHub Actions",
+      "description": "Configure pipelines de integração contínua e implantação usando GitHub Actions para testes automatizados e implantação."
     }
   ]
 }

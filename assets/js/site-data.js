@@ -11,7 +11,7 @@ window.PORTFOLIO_DATA = {
       whereLabel: 'Onde trabalho:',
       contact: 'Contato',
       technologies: 'Tecnologias',
-      role: 'Software Engineer',
+      role: '💻 Engenheira de Software',
       back: 'Voltar',
       repo: 'Abrir repositório no GitHub',
       themeDark: '🌙 Escuro',
@@ -28,7 +28,7 @@ window.PORTFOLIO_DATA = {
       whereLabel: 'Where I work:',
       contact: 'Contact',
       technologies: 'Technologies',
-      role: 'Software Engineer',
+      role: '💻 Software Engineer',
       back: 'Back',
       repo: 'Open repository on GitHub',
       themeDark: '🌙 Dark',
@@ -78,13 +78,13 @@ window.PORTFOLIO_DATA = {
       repo: 'https://github.com/jessicaetiene/catalog-pricing-service',
       name: { pt: 'Catalog Pricing Service', en: 'Catalog Pricing Service' },
       description: {
-        pt: 'Mini projeto de API em Kotlin.',
-        en: 'Kotlin mini API project.'
+        pt: 'Um serviço de backend construído com Kotlin',
+        en: 'A backend service built with Kotlin and Spring Boot'
       }
     },
-    'projeto-3': { repo: 'https://github.com/jessicaetiene/projeto-3', name: { pt: 'Projeto 3', en: 'Project 3' }, description: { pt: 'Dashboard de métricas.', en: 'Metrics dashboard.' } },
-    'projeto-4': { repo: 'https://github.com/jessicaetiene/projeto-4', name: { pt: 'Projeto 4', en: 'Project 4' }, description: { pt: 'Sistema de autenticação.', en: 'Authentication system.' } },
-    'projeto-5': { repo: 'https://github.com/jessicaetiene/projeto-5', name: { pt: 'Projeto 5', en: 'Project 5' }, description: { pt: 'E-commerce com carrinho.', en: 'E-commerce with cart.' } },
-    'projeto-6': { repo: 'https://github.com/jessicaetiene/projeto-6', name: { pt: 'Projeto 6', en: 'Project 6' }, description: { pt: 'App de tarefas.', en: 'Task app.' } }
+    // 'projeto-3': { repo: 'https://github.com/jessicaetiene/projeto-3', name: { pt: 'Projeto 3', en: 'Project 3' }, description: { pt: 'Dashboard de métricas.', en: 'Metrics dashboard.' } },
+    // 'projeto-4': { repo: 'https://github.com/jessicaetiene/projeto-4', name: { pt: 'Projeto 4', en: 'Project 4' }, description: { pt: 'Sistema de autenticação.', en: 'Authentication system.' } },
+    // 'projeto-5': { repo: 'https://github.com/jessicaetiene/projeto-5', name: { pt: 'Projeto 5', en: 'Project 5' }, description: { pt: 'E-commerce com carrinho.', en: 'E-commerce with cart.' } },
+    // 'projeto-6': { repo: 'https://github.com/jessicaetiene/projeto-6', name: { pt: 'Projeto 6', en: 'Project 6' }, description: { pt: 'App de tarefas.', en: 'Task app.' } }
   }
 };
