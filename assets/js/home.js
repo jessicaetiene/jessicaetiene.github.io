@@ -4,7 +4,7 @@
 
   const CONTACTS = [
     { iconSrc: 'https://cdn.simpleicons.org/github', iconAlt: 'GitHub', label: 'GitHub', value: 'jessicaetiene', href: 'https://github.com/jessicaetiene' },
-    { iconSrc: 'https://cdn.simpleicons.org/linkedin', iconAlt: 'LinkedIn', label: 'LinkedIn', value: 'jessicaetiene', href: 'https://www.linkedin.com/in/jessicaetiene/' },
+    { iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg', iconAlt: 'LinkedIn', label: 'LinkedIn', value: 'jessicaetiene', href: 'https://www.linkedin.com/in/jessicaetiene/' },
     { icon: '📧', label: 'Email', value: 'jessicaetiene@gmail.com', href: 'mailto:jessicaetiene@gmail.com' },
     { icon: '📍', label: 'Localização', value: 'São Paulo, Brasil', href: 'https://maps.google.com/?q=S%C3%A3o+Paulo,+Brasil' }
   ];
