@@ -1,5 +1,23 @@
 {
   "name": "Kafka Lab",
   "description": "Lab to learn and practice Apache Kafka concepts.",
-  "sideDescription": "Lab to study event-driven messaging fundamentals with Apache Kafka."
+  "sideDescription": "Lab to study event-driven messaging fundamentals with Apache Kafka.",
+  "studyTopics": [
+    {
+      "title": "Kafka fundamentals",
+      "description": "Understand brokers, topics, partitions, and replication."
+    },
+    {
+      "title": "Producers and consumers",
+      "description": "Practice event publishing and consumption with delivery guarantees."
+    },
+    {
+      "title": "Consumer groups",
+      "description": "Explore load balancing and consumption parallelism."
+    },
+    {
+      "title": "Observability",
+      "description": "Track metrics, lag, and cluster behavior in realistic scenarios."
+    }
+  ]
 }

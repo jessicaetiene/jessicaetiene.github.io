@@ -18,6 +18,30 @@
     { name: 'AWS', badge: 'https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white' }
   ];
 
+
+  const descriptionCache = new Map();
+
+  const loadProjectDescription = async (projectId, lang) => {
+    const cacheKey = `${projectId}:${lang}`;
+    if (descriptionCache.has(cacheKey)) return descriptionCache.get(cacheKey);
+
+    const fallback = {
+      name: projectId,
+      description: ''
+    };
+
+    try {
+      const response = await fetch(`./assets/data/descriptions/${projectId}/${lang}.json`);
+      if (!response.ok) return fallback;
+      const json = await response.json();
+      const data = { ...fallback, ...json };
+      descriptionCache.set(cacheKey, data);
+      return data;
+    } catch (_error) {
+      return fallback;
+    }
+  };
+
   const getStoredLang = () => localStorage.getItem('idioma') || 'pt';
   const getStoredTheme = () => localStorage.getItem('theme') || 'light';
 
@@ -56,18 +80,26 @@
     });
   };
 
-  const renderProjects = (lang) => {
+  const renderProjects = async (lang) => {
     const list = document.getElementById('listaProjetos');
     if (!list) return;
     list.innerHTML = '';
-    Object.entries(data.projects).forEach(([id, project]) => {
+
+    const projects = await Promise.all(
+      Object.entries(data.projects).map(async ([id, project]) => {
+        const descriptionData = await loadProjectDescription(id, lang);
+        return { id, project, descriptionData };
+      })
+    );
+
+    projects.forEach(({ id, descriptionData }) => {
       const card = document.createElement('a');
       card.className = 'project';
       card.href = `./projects/${id}.html`;
       const title = document.createElement('h3');
-      title.textContent = project.name[lang];
+      title.textContent = descriptionData.name;
       const desc = document.createElement('p');
-      desc.textContent = project.description[lang];
+      desc.textContent = descriptionData.description;
       const cta = document.createElement('small');
       cta.textContent = lang === 'pt' ? 'Ver detalhes →' : 'View details →';
       card.append(title, desc, cta);
@@ -82,7 +114,7 @@
     if (toggle) toggle.textContent = darkMode ? t.themeLight : t.themeDark;
   };
 
-  const applyLanguage = (lang) => {
+  const applyLanguage = async (lang) => {
     const selectedLang = data.languages[lang] ? lang : 'pt';
     const t = data.languages[selectedLang];
     localStorage.setItem('idioma', selectedLang);
@@ -113,12 +145,14 @@
     });
 
     applyTheme(getStoredTheme(), t);
-    renderProjects(selectedLang);
+    await renderProjects(selectedLang);
   };
 
   const bindEvents = () => {
     document.querySelectorAll('.lang-btn').forEach((btn) => {
-      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+      btn.addEventListener('click', () => {
+        void applyLanguage(btn.dataset.lang);
+      });
     });
 
     const toggle = document.getElementById('themeToggle');
@@ -126,7 +160,7 @@
       toggle.addEventListener('click', () => {
         const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
         localStorage.setItem('theme', nextTheme);
-        applyLanguage(getStoredLang());
+        void applyLanguage(getStoredLang());
       });
     }
 
@@ -147,5 +181,5 @@
   renderContacts();
   renderTechBadges();
   bindEvents();
-  applyLanguage(getStoredLang());
+  void applyLanguage(getStoredLang());
 })();

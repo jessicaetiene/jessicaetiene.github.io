@@ -53,38 +53,14 @@ window.PORTFOLIO_DATA = {
   },
   projects: {
     'kafka-lab': {
-      repo: 'https://github.com/jessicaetiene/kafka-lab',
-      name: { pt: 'Kafka Lab', en: 'Kafka Lab' },
-      description: {
-        pt: 'Laboratório para aprender e praticar conceitos do Apache Kafka.',
-        en: 'Lab to learn and practice Apache Kafka concepts.'
-      },
-      studyTopics: {
-        pt: [
-          { title: 'Fundamentos Kafka', description: 'Entender brokers, tópicos, partições e replicação.' },
-          { title: 'Produtores e consumidores', description: 'Praticar publicação e leitura de eventos com garantia de entrega.' },
-          { title: 'Consumer Groups', description: 'Explorar balanceamento de carga e paralelismo de consumo.' },
-          { title: 'Observabilidade', description: 'Acompanhar métricas, lag e comportamento do cluster em cenários reais.' }
-        ],
-        en: [
-          { title: 'Kafka fundamentals', description: 'Understand brokers, topics, partitions, and replication.' },
-          { title: 'Producers and consumers', description: 'Practice event publishing and consumption with delivery guarantees.' },
-          { title: 'Consumer groups', description: 'Explore load balancing and consumption parallelism.' },
-          { title: 'Observability', description: 'Track metrics, lag, and cluster behavior in realistic scenarios.' }
-        ]
-      }
+      repo: 'https://github.com/jessicaetiene/kafka-lab'
     },
     'catalog-pricing-service': {
-      repo: 'https://github.com/jessicaetiene/catalog-pricing-service',
-      name: { pt: 'Catalog Pricing Service', en: 'Catalog Pricing Service' },
-      description: {
-        pt: 'Mini projeto de API em Kotlin.',
-        en: 'Kotlin mini API project.'
-      }
+      repo: 'https://github.com/jessicaetiene/catalog-pricing-service'
     },
-    'projeto-3': { repo: 'https://github.com/jessicaetiene/projeto-3', name: { pt: 'Projeto 3', en: 'Project 3' }, description: { pt: 'Dashboard de métricas.', en: 'Metrics dashboard.' } },
-    'projeto-4': { repo: 'https://github.com/jessicaetiene/projeto-4', name: { pt: 'Projeto 4', en: 'Project 4' }, description: { pt: 'Sistema de autenticação.', en: 'Authentication system.' } },
-    'projeto-5': { repo: 'https://github.com/jessicaetiene/projeto-5', name: { pt: 'Projeto 5', en: 'Project 5' }, description: { pt: 'E-commerce com carrinho.', en: 'E-commerce with cart.' } },
-    'projeto-6': { repo: 'https://github.com/jessicaetiene/projeto-6', name: { pt: 'Projeto 6', en: 'Project 6' }, description: { pt: 'App de tarefas.', en: 'Task app.' } }
+    'projeto-3': { repo: 'https://github.com/jessicaetiene/projeto-3' },
+    'projeto-4': { repo: 'https://github.com/jessicaetiene/projeto-4' },
+    'projeto-5': { repo: 'https://github.com/jessicaetiene/projeto-5' },
+    'projeto-6': { repo: 'https://github.com/jessicaetiene/projeto-6' }
   }
 };
