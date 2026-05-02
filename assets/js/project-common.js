@@ -2,6 +2,41 @@ window.renderProjectPage = async (projectId) => {
   const data = window.PORTFOLIO_DATA;
   if (!data) return;
 
+
+  const loadJsonFile = async (path) => {
+    const tryFetch = async () => {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error('fetch_failed');
+      return response.json();
+    };
+
+    try {
+      return await tryFetch();
+    } catch (_fetchError) {
+      if (window.location.protocol !== 'file:') throw _fetchError;
+
+      return new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.open('GET', path, true);
+        request.overrideMimeType('application/json');
+        request.onreadystatechange = () => {
+          if (request.readyState !== 4) return;
+          if (request.status === 0 || (request.status >= 200 && request.status < 300)) {
+            try {
+              resolve(JSON.parse(request.responseText || '{}'));
+            } catch (parseError) {
+              reject(parseError);
+            }
+            return;
+          }
+          reject(new Error('xhr_failed'));
+        };
+        request.onerror = () => reject(new Error('xhr_network_error'));
+        request.send();
+      });
+    }
+  };
+
   const getStoredLang = () => localStorage.getItem('idioma') || 'pt';
   const getStoredTheme = () => localStorage.getItem('theme') || 'light';
   const applyTheme = (theme) => {
@@ -19,9 +54,7 @@ window.renderProjectPage = async (projectId) => {
     };
 
     try {
-      const response = await fetch(`../assets/data/descriptions/${projectId}/${lang}.json`);
-      if (!response.ok) return fallback;
-      const json = await response.json();
+      const json = await loadJsonFile(`../assets/data/descriptions/${projectId}/${lang}.json`);
       return {
         ...fallback,
         ...json
