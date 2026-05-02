@@ -1,5 +1,11 @@
 {
   "name": "Catalog Pricing Service",
   "description": "Mini projeto de API em Kotlin.",
-  "sideDescription": "Mini projeto de API em Kotlin para estudo de arquitetura backend e regras de preço."
+  "sideDescription": "Mini projeto de API em Kotlin para estudo de arquitetura backend e regras de preço.",
+  "studyTopics": [
+    {
+      "title": "API Rest",
+      "description": "Design de API, princípios REST, métodos HTTP, códigos de status e melhores práticas para construção de APIs RESTful."
+    }
+  ]
 }

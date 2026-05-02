@@ -1,5 +1,11 @@
 {
   "name": "Catalog Pricing Service",
   "description": "Kotlin mini API project.",
-  "sideDescription": "Kotlin mini API project to study backend architecture and pricing rules."
+  "sideDescription": "Kotlin mini API project to study backend architecture and pricing rules.",
+  "studyTopics": [
+    {
+      "title": "API Rest",
+      "description": "API Dsign, REST principles, HTTP methods, status codes, and best practices for building RESTful APIs."
+    }
+  ]
 }
