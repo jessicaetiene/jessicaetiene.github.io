@@ -12,7 +12,7 @@ window.PORTFOLIO_DATA = {
       contact: 'Contato',
       technologies: 'Tecnologias',
       role: 'Software Engineer',
-      back: '← Voltar',
+      back: 'Voltar',
       repo: 'Abrir repositório no GitHub',
       themeDark: '🌙 Escuro',
       themeLight: '☀️ Claro'
@@ -29,7 +29,7 @@ window.PORTFOLIO_DATA = {
       contact: 'Contact',
       technologies: 'Technologies',
       role: 'Software Engineer',
-      back: '← Back',
+      back: 'Back',
       repo: 'Open repository on GitHub',
       themeDark: '🌙 Dark',
       themeLight: '☀️ Light'
@@ -43,8 +43,8 @@ window.PORTFOLIO_DATA = {
       en: 'Software engineer focused on building scalable, resilient, and data-driven backend systems.'
     },
     who: {
-      pt: 'Engenheira de software com foco em backend, apaixonada por arquitetura distribuída e boas práticas de engenharia.',
-      en: 'Software engineer focused on backend development, passionate about distributed architecture and engineering best practices.'
+      pt: 'Sou uma desenvolvedora backend apaixonada por arquitetura de sistemas, microsserviços e engenharia de dados. Tenho experiência em projetar e implementar soluções em ambientes cloud (especialmente AWS), além de atuar na produção e integração de modelos de machine learning.',
+      en: 'am a backend developer passionate about system architecture, microservices, and data engineering. I have experience designing and implementing cloud-based solutions (especially on AWS), as well as deploying and integrating machine learning models into production environments.'
     },
     where: {
       pt: 'Atuo como engenheira de software remota, colaborando em produtos digitais e APIs de alta disponibilidade.',
