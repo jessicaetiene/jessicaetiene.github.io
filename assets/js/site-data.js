@@ -8,7 +8,6 @@ window.PORTFOLIO_DATA = {
       projectsTitle: 'Projetos',
       projectsHint: 'Clique em um projeto para acessar os detalhes.',
       whoLabel: 'Quem sou:',
-      whereLabel: 'Onde trabalho:',
       contact: 'Contato',
       technologies: 'Tecnologias',
       role: '💻 Engenheira de Software',
@@ -25,7 +24,6 @@ window.PORTFOLIO_DATA = {
       projectsTitle: 'Projects',
       projectsHint: 'Click a project to access its details.',
       whoLabel: 'Who I am:',
-      whereLabel: 'Where I work:',
       contact: 'Contact',
       technologies: 'Technologies',
       role: '💻 Software Engineer',
@@ -45,10 +43,6 @@ window.PORTFOLIO_DATA = {
     who: {
       pt: 'Sou uma desenvolvedora backend apaixonada por arquitetura de sistemas, microsserviços e engenharia de dados. Tenho experiência em projetar e implementar soluções em ambientes cloud (especialmente AWS), além de atuar na produção e integração de modelos de machine learning.',
       en: 'am a backend developer passionate about system architecture, microservices, and data engineering. I have experience designing and implementing cloud-based solutions (especially on AWS), as well as deploying and integrating machine learning models into production environments.'
-    },
-    where: {
-      pt: 'Atuo como engenheira de software remota, colaborando em produtos digitais e APIs de alta disponibilidade.',
-      en: 'I work remotely as a software engineer, contributing to digital products and highly available APIs.'
     }
   },
   projects: {

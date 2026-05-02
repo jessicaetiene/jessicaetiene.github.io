@@ -5,8 +5,7 @@
   const CONTACTS = [
     { iconSrc: 'https://cdn.simpleicons.org/github', iconAlt: 'GitHub', label: 'GitHub', value: "jessicaetiene",href: 'https://github.com/jessicaetiene' },
     { iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg', iconAlt: 'LinkedIn', label: 'LinkedIn', value: 'jessicaetiene', href: 'https://www.linkedin.com/in/jessicaetiene/' },
-    { icon: '📧', label: 'Email', value: 'jessicaetienema@gmail.com', href: 'mailto:jessicaetiene@gmail.com' },
-    { icon: '📍', label: 'Localização', value: 'Montreal, Canada', href: 'https://www.google.com/maps/place/Montreal,+QC,+Canada' }
+    { icon: '📧', label: 'Email', value: 'jessicaetienema@gmail.com', href: 'mailto:jessicaetienema@gmail.com' }
   ];
 
   const TECHNOLOGIES = [
@@ -103,9 +102,9 @@
     setText('bio', data.profile.bio[selectedLang]);
     setText('projetosHint', t.projectsHint);
     setText('quemSouLabel', t.whoLabel);
-    setText('ondeTrabalhoLabel', t.whereLabel);
+    //setText('ondeTrabalhoLabel', t.whereLabel);
     setText('quemSou', data.profile.who[selectedLang]);
-    setText('ondeTrabalho', data.profile.where[selectedLang]);
+    //setText('ondeTrabalho', data.profile.where[selectedLang]);
 
     const aboutTitle = document.querySelector('#sobre h2');
     if (aboutTitle) aboutTitle.textContent = t.aboutTitle;
