@@ -79,8 +79,7 @@
       const title = document.createElement('h3');
       title.textContent = project.name[lang];
       const desc = document.createElement('p');
-      const fallbackDescription = project.description?.[lang] || project.description?.pt || "";
-      desc.textContent = await loadProjectDescription(id, lang, fallbackDescription);
+      desc.textContent = await loadProjectDescription(id, lang, '');
       const cta = document.createElement('small');
       cta.textContent = lang === 'pt' ? 'Ver detalhes →' : 'View details →';
       card.append(title, desc, cta);

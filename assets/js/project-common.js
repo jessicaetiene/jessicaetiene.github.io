@@ -15,7 +15,7 @@ window.renderProjectPage = async (projectId) => {
   const loadDescriptions = async (lang) => {
     const fallback = {
       name: project.name?.[lang] || project.name?.pt || projectId,
-      description: project.description?.[lang] || project.description?.pt || ''
+      description: ''
     };
 
     try {
@@ -43,7 +43,7 @@ window.renderProjectPage = async (projectId) => {
     const name = descriptionData.name;
     const description = descriptionData.description;
     const sideDescription = descriptionData.sideDescription || description;
-    const topics = descriptionData.studyTopics || project.studyTopics?.[selectedLang] || project.studyTopics?.pt || [];
+    const topics = descriptionData.studyTopics || [];
 
     root.innerHTML = `
       <aside class="project-sidebar">
