@@ -6,7 +6,7 @@
     { iconSrc: 'https://cdn.simpleicons.org/github', iconAlt: 'GitHub', label: 'GitHub', value: "jessicaetiene",href: 'https://github.com/jessicaetiene' },
     { iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg', iconAlt: 'LinkedIn', label: 'LinkedIn', value: 'jessicaetiene', href: 'https://www.linkedin.com/in/jessicaetiene/' },
     { icon: '📧', label: 'Email', value: 'jessicaetienema@gmail.com', href: 'mailto:jessicaetiene@gmail.com' },
-    { icon: '📍', label: 'Localização', value: 'Montreal, Canada' }
+    { icon: '📍', label: 'Localização', value: 'Montreal, Canada', href: 'https://www.google.com/maps/place/Montreal,+QC,+Canada' }
   ];
 
   const TECHNOLOGIES = [
