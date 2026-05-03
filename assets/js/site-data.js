@@ -69,7 +69,7 @@ window.PORTFOLIO_DATA = {
       }
     },
     'catalog-pricing-service': {
-      repo: 'https://github.com/jessicaetiene/catalog-pricing-service',
+      repo: 'https://github.com/jessicaetiene/jema-catalog-pricing-service',
       name: { pt: 'Catalog Pricing Service', en: 'Catalog Pricing Service' },
       description: {
         pt: 'Um serviço de backend construído com Kotlin',
