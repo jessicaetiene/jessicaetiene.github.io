@@ -76,7 +76,7 @@ window.PORTFOLIO_DATA = {
         en: 'A backend service built with Kotlin and Spring Boot'
       }
     },
-    // 'projeto-3': { repo: 'https://github.com/jessicaetiene/projeto-3', name: { pt: 'Projeto 3', en: 'Project 3' }, description: { pt: 'Dashboard de métricas.', en: 'Metrics dashboard.' } },
+    'job-market-pipeline': { repo: 'https://github.com/jessicaetiene/job-market-data-lake', name: { pt: 'Pipeline mercado de trabalho', en: 'Job Market Pipeline' }, description: { pt: 'Pipeline end-to-end de Data Lake com Airflow, LocalStack, DuckDB e Streamlit para analytics de vagas.', en: 'End-to-end Data Lake pipeline with Airflow, LocalStack, DuckDB and Streamlit for job market analytics.' } },
     // 'projeto-4': { repo: 'https://github.com/jessicaetiene/projeto-4', name: { pt: 'Projeto 4', en: 'Project 4' }, description: { pt: 'Sistema de autenticação.', en: 'Authentication system.' } },
     // 'projeto-5': { repo: 'https://github.com/jessicaetiene/projeto-5', name: { pt: 'Projeto 5', en: 'Project 5' }, description: { pt: 'E-commerce com carrinho.', en: 'E-commerce with cart.' } },
     // 'projeto-6': { repo: 'https://github.com/jessicaetiene/projeto-6', name: { pt: 'Projeto 6', en: 'Project 6' }, description: { pt: 'App de tarefas.', en: 'Task app.' } }

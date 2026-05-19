@@ -1,0 +1,28 @@
+{
+  "name": "Pipeline Job Market",
+  "description": "Desenvolvi um pipeline end-to-end de Data Lake para mercado de trabalho utilizando Apache Airflow, LocalStack S3, DuckDB e Streamlit para ingerir, transformar, validar, orquestrar e visualizar análises em tempo real de vagas da API Adzuna.",
+  "sideDescription": "Dashboard de métricas para observabilidade de serviços backend",
+  "studyTopics": [
+    {
+      "title": "Adzuna API",
+      "description": "API utilizada para coletar dados em tempo real do mercado de trabalho, salários e empresas"
+    },
+    {
+      "title": "Apache Airflow",
+      "description": "Plataforma de orquestração usada para agendar e gerenciar pipelines ETL/Data Lake"
+    },
+    {
+      "title": "Terraform",
+      "description": "Ferramenta de IaC utilizada para provisionar buckets S3 e recursos cloud locais"
+    },
+    {
+      "title": "LocalStack",
+      "description": "Emulador local da AWS usado para simular serviços S3 durante desenvolvimento e testes"
+    },
+    {
+      "title": "Stramlit",
+      "description": "Framework Python utilizado para criar dashboards interativos de analytics em tempo real"
+    }
+
+  ]
+}
